@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Reply";
+}
+
+<style>
+    .reply-page {
+        min-height: 85vh;
+        padding: 60px 20px;
+        background: #F7F1E8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .reply-card {
+        width: 100%;
+        max-width: 650px;
+        background: #111;
+        border: 1px solid #C6A15B;
+        border-radius: 22px;
+        padding: 40px;
+        box-shadow: 0 20px 50px rgba(0,0,0,.3);
+    }
+
+    .reply-title {
+        text-align: center;
+        color: #C6A15B;
+        letter-spacing: 5px;
+        margin-bottom: 30px;
+    }
+
+    .reply-textarea {
+        width: 100%;
+        min-height: 180px;
+        box-sizing: border-box;
+        resize: vertical;
+        padding: 16px;
+        background: #1b1b1b;
+        color: white;
+        border: 1px solid #444;
+        border-radius: 14px;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .reply-textarea:focus {
+            border-color: #C6A15B;
+            box-shadow: 0 0 15px rgba(198,161,91,.2);
+        }
+
+    .reply-submit {
+        width: 100%;
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 14px;
+        border: 1px solid #C6A15B;
+        background: #0F2E26;
+        color: #C6A15B;
+        font-weight: 700;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: .3s;
+    }
+
+        .reply-submit:hover {
+            background: #C6A15B;
+            color: #111;
+            transform: translateY(-3px);
+        }
+
+    .reply-error {
+        color: #ff4d6d;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+</style>
+
+
+<div class="reply-page">
+
+    <div class="reply-card">
+
+        <h1 class="reply-title">
+            REPLY
+        </h1>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="reply-error">
+                @ViewBag.Error
+            </div>
+        }
+
+        <form asp-action="Reply" method="post">
+
+            <input type="hidden"
+                   name="id"
+                   value="@ViewBag.MessageId" />
+
+            <textarea name="content"
+                      class="reply-textarea"
+                      placeholder="Write your reply..."
+                      required></textarea>
+
+            <button type="submit"
+                    class="reply-submit">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+                SEND REPLY
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

@@ -61,5 +61,27 @@ namespace Webproject.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId == null)
+            {
+                return RedirectToAction("SignIn", "Account");
+            }
+
+            var notification = _context.Notifications
+                .FirstOrDefault(n => n.Id == id && n.UserId == userId.Value);
+
+            if (notification != null)
+            {
+                _context.Notifications.Remove(notification);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
