@@ -1,0 +1,496 @@
+﻿@{
+    ViewData["Title"] = "Add Money";
+}
+
+<style>
+
+    .add-money-page {
+        min-height: 78vh;
+        padding: 55px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+
+    .add-money-wrapper {
+        width: 900px;
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: .85fr 1.15fr;
+        gap: 35px;
+        align-items: center;
+    }
+
+
+    
+
+    .add-money-intro {
+        padding: 20px;
+    }
+
+        .add-money-intro small {
+            color: #C6A15B;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .add-money-intro h1 {
+            font-size: 43px;
+            line-height: 1.1;
+            margin: 12px 0;
+            color: #111;
+        }
+
+        .add-money-intro p {
+            color: #888;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+    .wallet-preview {
+        padding: 25px;
+        border-radius: 22px;
+        background: linear-gradient( 135deg, #173e32, #0c241d );
+        border: 1px solid rgba(198,161,91,.4);
+        box-shadow: 0 20px 45px rgba(0,0,0,.4);
+    }
+
+    .wallet-preview-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .luxe-logo {
+        color: #C6A15B;
+        font-weight: bold;
+        letter-spacing: 4px;
+        font-size: 20px;
+    }
+
+    .wallet-preview-icon {
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #C6A15B;
+        border: 1px solid rgba(198,161,91,.35);
+    }
+
+    .wallet-preview-text {
+        margin-top: 35px;
+    }
+
+        .wallet-preview-text span {
+            color: rgba(255,255,255,.55);
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        .wallet-preview-text strong {
+            display: block;
+            margin-top: 7px;
+            color: #fff;
+            font-size: 22px;
+        }
+
+
+    
+
+    .add-money-card {
+        padding: 38px;
+        border-radius: 28px;
+        background: rgba(255,255,255,.06);
+        backdrop-filter: blur(18px);
+        border: 1px solid rgba(198,161,91,.25);
+        box-shadow: 0 25px 60px rgba(0,0,0,.45);
+    }
+
+    .add-money-card-header {
+        text-align: center;
+        margin-bottom: 28px;
+    }
+
+    .add-money-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 18px;
+        background: rgba(198,161,91,.08);
+        border: 1px solid rgba(198,161,91,.25);
+        color: #C6A15B;
+        font-size: 25px;
+    }
+
+    .add-money-card h2 {
+        margin: 0 0 8px;
+        color: #222;
+        font-size: 25px;
+    }
+
+    .add-money-card-header p {
+        color: #888;
+        font-size: 13px;
+        margin: 0;
+    }
+
+
+    
+
+    .amount-label {
+        color: #555;
+        font-size: 13px;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .quick-amounts {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 22px;
+    }
+
+    .quick-amount {
+        padding: 12px 8px;
+        border-radius: 12px;
+        border: 1px solid rgba(198,161,91,.25);
+        background: rgba(255,255,255,.04);
+        color: #555;
+        cursor: pointer;
+        font-weight: 600;
+        transition: .25s;
+    }
+
+        .quick-amount:hover,
+        .quick-amount.active {
+            background: #1A4639;
+            color: #C6A15B;
+            border-color: #C6A15B;
+        }
+
+
+
+
+    .amount-input-wrapper {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .currency {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #C6A15B;
+        font-weight: bold;
+    }
+
+    .amount-input {
+        width: 100%;
+        padding: 15px 20px 15px 40px;
+        border-radius: 14px;
+        border: 1px solid rgba(198,161,91,.35);
+        outline: none;
+        background: rgba(255,255,255,.06);
+        color: #111;
+        font-size: 17px;
+        box-sizing: border-box;
+        transition: .25s;
+    }
+
+        .amount-input:focus {
+            border-color: #C6A15B;
+            box-shadow: 0 0 0 3px rgba(198,161,91,.08);
+        }
+
+        .amount-input::placeholder {
+            color: #999;
+        }
+
+
+
+
+    .confirm-money-btn {
+        width: 100%;
+        padding: 16px;
+        border-radius: 14px;
+        border: 1px solid #C6A15B;
+        background: #1A4639;
+        color: #C6A15B;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        transition: .3s ease;
+    }
+
+        .confirm-money-btn:hover {
+            background: #C6A15B;
+            color: #111;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(198,161,91,.25);
+        }
+
+
+    .security-note {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 18px;
+        color: #888;
+        font-size: 11px;
+    }
+
+        .security-note i {
+            color: #C6A15B;
+        }
+
+
+    .back-wallet {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #888;
+        text-decoration: none;
+        font-size: 13px;
+        transition: .25s;
+    }
+
+        .back-wallet:hover {
+            color: #C6A15B;
+        }
+
+
+    @@media (max-width: 750px) {
+
+        .add-money-wrapper {
+            grid-template-columns: 1fr;
+            max-width: 500px;
+        }
+
+        .add-money-intro {
+            padding: 0;
+        }
+
+            .add-money-intro h1 {
+                font-size: 34px;
+            }
+    }
+
+</style>
+
+<div class="add-money-page">
+
+    ```
+    <div class="add-money-wrapper">
+
+
+       
+
+        <div class="add-money-intro">
+
+            <small>
+                LUXE Wallet
+            </small>
+
+            <h1>
+                Add Money
+                <br />
+                With Ease.
+            </h1>
+
+            <p>
+                Add funds to your LUXE wallet and enjoy
+                a smoother and more convenient shopping
+                experience.
+            </p>
+
+
+            <div class="wallet-preview">
+
+                <div class="wallet-preview-top">
+
+                    <div class="luxe-logo">
+                        LUXE
+                    </div>
+
+                    <div class="wallet-preview-icon">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+
+                </div>
+
+
+                <div class="wallet-preview-text">
+
+                    <span>
+                        WALLET FUNDING
+                    </span>
+
+                    <strong>
+                        Fast & Secure
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+     
+
+        <div class="add-money-card">
+
+
+            <div class="add-money-card-header">
+
+                <div class="add-money-icon">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                </div>
+
+                <h2>
+                    Choose Amount
+                </h2>
+
+                <p>
+                    Select an amount or enter your own.
+                </p>
+
+            </div>
+
+
+            <form asp-action="Payment"
+                  method="get">
+
+
+                <label class="amount-label">
+                    Quick Amounts
+                </label>
+
+
+                <div class="quick-amounts">
+
+                    <button type="button"
+                            class="quick-amount"
+                            onclick="setAmount(25, this)">
+                        $25
+                    </button>
+
+                    <button type="button"
+                            class="quick-amount"
+                            onclick="setAmount(50, this)">
+                        $50
+                    </button>
+
+                    <button type="button"
+                            class="quick-amount"
+                            onclick="setAmount(100, this)">
+                        $100
+                    </button>
+
+                    <button type="button"
+                            class="quick-amount"
+                            onclick="setAmount(200, this)">
+                        $200
+                    </button>
+
+                    <button type="button"
+                            class="quick-amount"
+                            onclick="setAmount(500, this)">
+                        $500
+                    </button>
+
+                    <button type="button"
+                            class="quick-amount"
+                            onclick="setAmount(1000, this)">
+                        $1000
+                    </button>
+
+                </div>
+
+
+                <label class="amount-label">
+                    Custom Amount
+                </label>
+
+
+                <div class="amount-input-wrapper">
+
+                    <span class="currency">
+                        $
+                    </span>
+
+                    <input type="number"
+                           id="amountInput"
+                           name="amount"
+                           class="amount-input"
+                           placeholder="Enter amount"
+                           min="1"
+                           step="0.01"
+                           required />
+
+                </div>
+
+
+                <button type="submit"
+                        class="confirm-money-btn">
+
+                    <i class="fa-solid fa-credit-card"></i>
+
+                    Continue to Payment
+
+                </button>
+
+
+            </form>
+
+
+            <div class="security-note">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                Secure demo payment experience
+
+            </div>
+
+
+            <a asp-action="Index"
+               class="back-wallet">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to Wallet
+
+            </a>
+
+        </div>
+
+    </div>
+    
+
+</div>
+
+<script>
+
+    function setAmount(amount, button) {
+
+        document.getElementById("amountInput").value = amount;
+
+        document.querySelectorAll(".quick-amount")
+            .forEach(btn => btn.classList.remove("active"));
+
+        button.classList.add("active");
+    }
+
+</script>

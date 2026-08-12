@@ -1,0 +1,761 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Webproject</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Webproject.styles.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+            .luxe-footer {
+                position: relative;
+                background: #1A1A1A;
+                border-top: 1px solid rgba(198,161,91,.35);
+                padding: 25px 8%;
+                overflow: hidden;
+            }
+
+
+                .luxe-footer::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 220px;
+                    height: 2px;
+                    background: #C6A15B;
+                    box-shadow: 0 0 12px rgba(198,161,91,.8);
+                }
+
+
+            .footer-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 30px;
+                flex-wrap: wrap;
+            }
+
+
+            .footer-logo h2 {
+                color: #C6A15B;
+                font-size: 34px;
+                letter-spacing: 8px;
+                margin: 0;
+                transition: .4s;
+            }
+
+                .footer-logo h2:hover {
+                    color: white;
+                    text-shadow: 0 0 8px #C6A15B, 0 0 20px #C6A15B;
+                }
+
+
+            .footer-logo i {
+                font-size: 24px;
+                margin-right: 2px;
+                vertical-align: middle;
+            }
+
+
+            .footer-logo span {
+                display: block;
+                margin-top: 5px;
+                color: #9d9d9d;
+                font-size: 13px;
+                letter-spacing: 2px;
+            }
+
+
+
+            .footer-slogan {
+                margin-top: 10px;
+                color: #777;
+                font-size: 12px;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+            }
+
+
+
+            .footer-links {
+                display: flex;
+                gap: 30px;
+            }
+
+
+
+                .footer-links a {
+                    color: #d7d7d7;
+                    text-decoration: none;
+                    font-size: 15px;
+                    position: relative;
+                    transition: .35s;
+                }
+
+
+
+                    .footer-links a::after {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        bottom: -6px;
+                        width: 0;
+                        height: 2px;
+                        background: #C6A15B;
+                        transition: .35s;
+                    }
+
+
+
+                    .footer-links a:hover {
+                        color: #C6A15B;
+                    }
+
+
+
+                        .footer-links a:hover::after {
+                            width: 100%;
+                        }
+
+
+
+            .social-icons {
+                display: flex;
+                gap: 14px;
+            }
+
+
+
+                .social-icons a {
+                    width: 42px;
+                    height: 42px;
+                    border: 1px solid rgba(198,161,91,.45);
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: #C6A15B;
+                    text-decoration: none;
+                    transition: .35s;
+                }
+
+
+
+
+                    .social-icons a:hover {
+                        background: #C6A15B;
+                        color: #111;
+                        transform: translateY(-5px) scale(1.12);
+                        box-shadow: 0 0 18px rgba(198,161,91,.45);
+                    }
+
+
+
+            .footer-bottom {
+                margin-top: 20px;
+                padding-top: 15px;
+                border-top: 1px solid rgba(255,255,255,.08);
+                text-align: center;
+            }
+
+
+
+                .footer-bottom p {
+                    margin: 0;
+                    color: #777;
+                    font-size: 13px;
+                    letter-spacing: 1px;
+                }
+
+
+
+            @@media(max - width:768px) {
+
+                .footer-top {
+                    flex-direction: column;
+                    text-align: center;
+                    gap: 22px;
+                }
+
+                .footer-links {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 18px;
+                }
+            }
+
+            body {
+                background: #F7F1E8;
+                color: #111;
+            }
+
+
+            .luxe-navbar {
+                background: #111111;
+                padding: 18px 0;
+            }
+
+            .luxe-logo {
+                color: #C6A15B !important;
+                font-size: 35px;
+                font-weight: bold;
+                letter-spacing: 8px;
+            }
+
+                .luxe-logo:hover {
+                    color: #F7F1E8 !important;
+                }
+
+            .luxe-link {
+                color: white !important;
+                margin-left: 25px;
+                font-size: 16px;
+                letter-spacing: 1px;
+                transition: .3s;
+            }
+
+                .luxe-link:hover {
+                    color: #C6A15B !important;
+                }
+
+
+            .glamora-footer {
+                background: #111111;
+            }
+
+            .footer-logo {
+                color: #C6A15B;
+                font-size: 30px;
+                letter-spacing: 5px;
+                font-family: 'Segoe UI',sans-serif;
+            }
+
+            .glamora-footer h5 {
+                color: #C6A15B;
+            }
+ 
+
+            .side-navbar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 95px;
+                height: 100vh;
+                background: #0F2E26;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 35px;
+                z-index: 9999;
+                box-shadow: 5px 0 20px rgba(0,0,0,.2);
+            }
+
+            .side-logo {
+                color: #C6A15B;
+                font-size: 35px;
+                font-weight: bold;
+                letter-spacing: 6px;
+                writing-mode: vertical-rl;
+                transform: rotate(180deg);
+                margin-bottom: 60px;
+            }
+
+            .side-links {
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
+                text-align: center;
+            }
+
+                .side-links a {
+                    color: white;
+                    text-decoration: none;
+                    font-size: 13px;
+                    letter-spacing: 1px;
+                    transition: .3s;
+                }
+
+                    .side-links a:hover {
+                        color: #C6A15B;
+                    }
+
+            .page-area {
+                margin-left: 95px;
+                width: calc(100% - 95px);
+                padding: 0;
+            }
+
+            .luxury-item {
+                margin: 8px 0;
+                border: 1px solid #C6A15B;
+                border-radius: 14px;
+                background: #111;
+                overflow: hidden;
+                position: relative;
+                transition: .35s;
+            }
+
+
+                .luxury-item::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient( 120deg, transparent, rgba(255,255,255,.6), transparent );
+                    transition: .5s;
+                }
+
+
+                .luxury-item:hover::before {
+                    left: 100%;
+                }
+
+
+
+                .luxury-item:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 15px 35px rgba(198,161,91,.5);
+                    border-color: #C6A15B;
+                }
+
+
+
+            .luxe-link {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 14px 18px !important;
+                color: #C6A15B !important;
+                font-weight: 600;
+                letter-spacing: 2px;
+                text-decoration: none;
+                transition: .35s;
+            }
+
+
+
+            .luxury-item:hover .luxe-link {
+                color: white !important;
+            }
+
+            .luxe-footer {
+                margin-top: 60px;
+            }
+
+            .side-extra {
+                position: absolute;
+                bottom: 35px;
+                left: 0;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+                padding-top: 20px;
+                border-top: 1px solid rgba(198,161,91,.3);
+            }
+
+                .side-extra a {
+                    color: #C6A15B;
+                    font-size: 24px;
+                    text-decoration: none;
+                    transition: .35s;
+                }
+
+                    .side-extra a:hover {
+                        color: white;
+                        transform: translateY(-5px);
+                        text-shadow: 0 0 10px #C6A15B, 0 0 20px #C6A15B;
+                    }
+
+            .notification-bell {
+                position: relative;
+                color: #C6A15B;
+                font-size: 24px;
+                transition: .35s;
+            }
+
+
+                .notification-bell:hover {
+                    color: white;
+                    transform: translateY(-5px);
+                    text-shadow: 0 0 15px #C6A15B;
+                }
+
+            .notification-number {
+                position: absolute;
+                top: -10px;
+                right: -12px;
+                background: #d90429;
+                color: white;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                font-size: 12px;
+                font-weight: bold;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                box-shadow: 0 0 12px rgba(217,4,41,.6);
+            }
+
+            .message-icon-link {
+                position: relative;
+                color: #C6A15B;
+                font-size: 24px;
+                text-decoration: none;
+                transition: .35s;
+            }
+
+                .message-icon-link:hover {
+                    color: white;
+                    transform: translateY(-5px);
+                    text-shadow: 0 0 15px #C6A15B;
+                }
+
+            .message-number {
+                position: absolute;
+                top: -10px;
+                right: -12px;
+                background: #d90429;
+                color: white;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                font-size: 12px;
+                font-weight: bold;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                box-shadow: 0 0 12px rgba(217,4,41,.6);
+            }
+
+         
+.send-message-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 30px;
+    background: #111;
+    color: #C6A15B !important;
+    border: 1px solid #C6A15B;
+    border-radius: 14px;
+    text-decoration: none !important;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+    transition: .35s ease;
+    box-shadow: 0 5px 18px rgba(0,0,0,.2);
+}
+
+.send-message-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.45),
+        transparent
+    );
+    transition: .5s;
+}
+
+.send-message-btn:hover {
+    color: white !important;
+    background: #111;
+    transform: translateY(-4px);
+    border-color: #C6A15B;
+    box-shadow:
+        0 10px 30px rgba(198,161,91,.35),
+        0 0 15px rgba(198,161,91,.2);
+}
+
+.send-message-btn:hover::before {
+    left: 120%;
+}
+
+.send-message-btn i {
+    color: #C6A15B;
+    transition: .35s;
+}
+
+.send-message-btn:hover i {
+    color: white;
+    transform: translateX(3px);
+}
+
+
+
+@if (Context.Session.GetString("IsAdmin") == "true")
+{
+    <a asp-controller="Messages"
+       asp-action="Send"
+       class="send-message-btn">
+
+        <i class="fa-solid fa-paper-plane"></i>
+        Send Message
+
+    </a>
+}
+
+.cart-icon-link { position: relative; color: #C6A15B;
+    font-size: 30px; text-decoration: none; display: inline-flex; 
+    justify-content: center; align-items: center; transition: .35s ease; }
+    .cart-icon-link:hover { color: white; transform: translateY(-5px); text-shadow: 0 0 15px #C6A15B; } 
+    .cart-icon-link:active { color: white; transform: scale(1.15); text-shadow: 0 0 10px #C6A15B, 0 0 25px #C6A15B; } 
+    .cart-number { position: absolute; top: -8px; right: -10px; background: #d90429; color: white;
+        border-radius: 50%; width: 18px; height: 18px; font-size: 11px; display: flex; justify-content: center;
+        align-items: center; box-shadow: 0 0 12px rgba(217,4,41,.6);
+    }
+
+ </style>
+</head>
+<body>
+
+    <div class="page-area">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+    <div class="content-wrapper">
+        <header>
+            <nav class="side-navbar">
+
+                <div class="side-logo">
+                    LUXE
+                </div>
+
+                <ul class="navbar-nav">
+
+
+                    @if (Context.Session.GetInt32("UserId") != null)
+                    {
+
+                        @if (Context.Session.GetString("IsAdmin") == "true")
+                        {
+                            <li class="nav-item luxury-item">
+                                <a class="nav-link luxe-link"
+                                   asp-controller="AdminProducts"
+                                   asp-action="Create">
+                                    ADMIN
+                                </a>
+                            </li>
+                        }
+
+
+                        <li class="nav-item luxury-item">
+                            <a class="nav-link luxe-link"
+                               asp-controller="Products"
+                               asp-action="Index">
+                                PRODUCTS
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item luxury-item">
+                            <a class="nav-link luxe-link"
+                               asp-controller="Orders"
+                               asp-action="MyOrders">
+                                ORDERS
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item luxury-item">
+                            <a class="nav-link luxe-link"
+                               asp-controller="Account"
+                               asp-action="Profile">
+                                ACCOUNT
+                            </a>
+                        </li>
+
+                        <li class="nav-item luxury-item">
+
+                            <a class="nav-link luxe-link"
+                               asp-controller="Account"
+                               asp-action="Logout">
+
+                                LOGOUT
+
+                            </a>
+
+                        </li>
+                    }
+                    else
+                    {
+
+                        <li class="nav-item luxury-item">
+                            <a class="nav-link luxe-link"
+                               asp-controller="Account"
+                               asp-action="SignIn">
+                                LOGIN
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item text-center mt-3">
+                            <a asp-controller="Account" asp-action="SignIn" class="cart-icon-link"> 
+                            <i class="fas fa-shopping-cart"></i> <span class="cart-number"> 0 </span> </a>
+                        </li>
+
+                    }
+
+
+                </ul>
+
+           
+                <div class="side-extra">
+
+                    @if (Context.Session.GetInt32("UserId") != null)
+                    {
+                   
+
+                        var userId = Context.Session.GetInt32("UserId");
+
+                        var db = Context.RequestServices
+                            .GetRequiredService<Webproject.Data.ApplicationDbContext>();
+
+                        var unreadNotifications = db.Notifications
+                            .Count(n => n.UserId == userId.Value && !n.IsRead);
+
+                        var unreadMessages = db.Messages
+                            .Count(m => m.UserId == userId.Value && !m.IsRead);
+
+
+                        <a asp-controller="Notifications"
+                           asp-action="Index"
+                           class="notification-bell">
+
+                            <i class="fa-solid fa-bell"></i>
+
+                            <span class="notification-number">
+                                @unreadNotifications
+                            </span>
+
+                        </a>
+
+
+
+                        <a asp-controller="Messages"
+                           asp-action="Index"
+                           class="message-icon-link">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <span class="message-number">
+                                @unreadMessages
+                            </span>
+
+                        </a>
+                    }
+                    else
+                    {
+
+
+                        <a asp-controller="Account"
+                           asp-action="SignIn"
+                           class="notification-bell">
+
+                            <i class="fa-solid fa-bell"></i>
+
+                            <span class="notification-number">
+                                0
+                            </span>
+
+                        </a>
+
+
+                        <a asp-controller="Account"
+                           asp-action="SignIn"
+                           class="message-icon-link">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <span class="message-number">
+                                0
+                            </span>
+
+                        </a>
+                    }
+
+                </div>
+        
+
+            </nav>
+        </header>
+
+        <footer class="luxe-footer">
+
+            <div class="footer-top">
+
+                <div class="footer-logo">
+
+                    <h2><i class="fa-solid fa-gem"></i>LUXE</h2>
+
+                    <span>Luxury Accessories</span>
+
+                    <p class="footer-slogan">
+                        Timeless Luxury • Crafted To Shine
+                    </p>
+
+                </div>
+
+                <div class="footer-links">
+
+                    <a href="#">Home</a>
+
+                    <a href="#">Shop</a>
+
+                    <a href="#">Collections</a>
+
+                    <a href="#">Contact</a>
+
+                </div>
+
+                <div class="social-icons">
+
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <p>
+                    © 2026 LUXE • Crafted with Elegance & Luxury
+                </p>
+
+            </div>
+
+        </footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>                                
+</html>

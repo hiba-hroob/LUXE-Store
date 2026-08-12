@@ -1,0 +1,404 @@
+﻿@model Webproject.Models.User
+
+@{
+    ViewData["Title"] = "My Account";
+}
+
+<style>
+
+    .luxe-account {
+        min-height: 100vh;
+        padding: 70px 35px;
+        background: radial-gradient(circle at top left, rgba(198,161,91,.12), transparent 35%), radial-gradient(circle at bottom right, rgba(15,46,38,.18), transparent 40%), #F7F1E8;
+        color: #111;
+    }
+
+    .account-wrapper {
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    
+
+    .profile-card {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto 45px;
+        padding: 38px;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        border-radius: 30px;
+        background: rgba(255,255,255,.72);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border: 1px solid rgba(198,161,91,.3);
+        box-shadow: 0 20px 55px rgba(15,46,38,.10);
+        overflow: hidden;
+        transition: .4s ease;
+    }
+
+        .profile-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: #C6A15B;
+            box-shadow: 0 0 18px rgba(198,161,91,.7);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 28px 65px rgba(15,46,38,.14);
+        }
+
+
+    .profile-avatar {
+        width: 115px;
+        height: 115px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(145deg,#0F2E26,#1A4639);
+        color: #C6A15B;
+        border: 2px solid #C6A15B;
+        font-size: 43px;
+        box-shadow: 0 15px 35px rgba(15,46,38,.20);
+        transition: .4s ease;
+    }
+
+    .profile-card:hover .profile-avatar {
+        transform: scale(1.06);
+        box-shadow: 0 18px 40px rgba(198,161,91,.25);
+    }
+
+  
+
+    .profile-info h2 {
+        margin: 0;
+        color: #0F2E26;
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: 2px;
+    }
+
+    .profile-info p {
+        margin: 8px 0 18px;
+        color: #888;
+        font-size: 14px;
+        letter-spacing: .7px;
+    }
+
+    .member-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 17px;
+        border-radius: 30px;
+        background: #0F2E26;
+        color: #C6A15B;
+        border: 1px solid rgba(198,161,91,.45);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+    }
+
+        .member-badge::before {
+            content: "✦";
+            color: #C6A15B;
+        }
+
+
+    .account-section-title {
+        text-align: center;
+        margin-bottom: 28px;
+    }
+
+        .account-section-title small {
+            color: #C6A15B;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .account-section-title h1 {
+            margin: 8px 0 0;
+            color: #0F2E26;
+            font-size: 28px;
+            letter-spacing: 3px;
+        }
+
+            .account-section-title h1::after {
+                content: "";
+                display: block;
+                width: 60px;
+                height: 3px;
+                margin: 13px auto 0;
+                background: #C6A15B;
+                border-radius: 10px;
+            }
+
+
+    .account-grid {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 25px;
+    }
+
+
+    .account-box {
+        position: relative;
+        height: 230px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 25px;
+        border-radius: 27px;
+        background: rgba(255,255,255,.72);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border: 1px solid rgba(198,161,91,.28);
+        box-shadow: 0 15px 40px rgba(15,46,38,.08);
+        text-decoration: none;
+        overflow: hidden;
+        transition: transform .4s ease, box-shadow .4s ease, border-color .4s ease;
+    }
+
+        .account-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 80%;
+            height: 100%;
+            background: linear-gradient( 120deg, transparent, rgba(255,255,255,.7), transparent );
+            transform: skewX(-25deg);
+            transition: .7s ease;
+        }
+
+        .account-box:hover::before {
+            left: 140%;
+        }
+
+        .account-box:hover {
+            transform: translateY(-9px);
+            border-color: #C6A15B;
+            box-shadow: 0 25px 55px rgba(15,46,38,.14), 0 0 25px rgba(198,161,91,.08);
+        }
+
+    
+
+    .gold-line {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 65px;
+        height: 4px;
+        background: #C6A15B;
+        box-shadow: 0 0 15px rgba(198,161,91,.7);
+    }
+
+
+    .account-box i {
+        width: 72px;
+        height: 72px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        border-radius: 21px;
+        background: #0F2E26;
+        color: #C6A15B;
+        font-size: 30px;
+        box-shadow: 0 12px 28px rgba(15,46,38,.18);
+        transition: .4s ease;
+        z-index: 2;
+    }
+
+    .account-box:hover i {
+        transform: translateY(-5px) scale(1.08);
+        box-shadow: 0 15px 35px rgba(198,161,91,.20);
+    }
+
+    .account-box h4 {
+        margin: 0 0 9px;
+        color: #0F2E26;
+        font-size: 17px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        z-index: 2;
+    }
+
+    .account-box span {
+        color: #888;
+        font-size: 12px;
+        letter-spacing: .5px;
+        z-index: 2;
+    }
+
+    .account-box:hover span {
+        color: #666;
+    }
+
+
+
+    @@media(max-width:900px) {
+
+        .account-grid {
+            grid-template-columns: repeat(2,1fr);
+        }
+    }
+
+    @@media(max-width:650px) {
+
+        .luxe-account {
+            padding: 45px 20px;
+        }
+
+        .profile-card {
+            flex-direction: column;
+            text-align: center;
+            padding: 32px 22px;
+        }
+
+        .profile-info h2 {
+            font-size: 25px;
+        }
+
+        .account-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .account-box {
+            height: 210px;
+        }
+    }
+
+</style>
+
+<div class="luxe-account">
+
+   
+    <div class="account-wrapper">
+
+      
+
+        <div class="profile-card">
+
+            <div class="profile-avatar">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+            <div class="profile-info">
+
+                <h2>
+                    @Model.FullName
+                </h2>
+
+                <p>
+                    @Model.Email
+                </p>
+
+                <span class="member-badge">
+                    LUXE MEMBER
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+
+        <div class="account-section-title">
+
+            <small>
+                Personal Space
+            </small>
+
+            <h1>
+                MY ACCOUNT
+            </h1>
+
+        </div>
+
+
+
+        <div class="account-grid">
+
+
+
+            <a asp-controller="Favorites"
+               asp-action="Index"
+               class="account-box">
+
+                <div class="gold-line"></div>
+
+                <i class="fa-solid fa-heart"></i>
+
+                <h4>
+                    FAVORITES
+                </h4>
+
+                <span>
+                    Your saved luxury products
+                </span>
+
+            </a>
+
+
+           
+
+
+            <a asp-controller="Wallet"
+               asp-action="Index"
+               class="account-box">
+
+                <div class="gold-line"></div>
+
+                <i class="fa-solid fa-wallet"></i>
+
+                <h4>Wallet</h4>
+
+                <span>Balance & Transactions</span>
+
+            </a>
+
+
+           
+
+            <a asp-controller="Account"
+               asp-action="ChangePassword"
+               class="account-box">
+
+                <div class="gold-line"></div>
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <h4>
+                    SECURITY
+                </h4>
+
+                <span>
+                    Protect your account
+                </span>
+
+            </a>
+
+        </div>
+
+    </div>
+   
+
+</div>

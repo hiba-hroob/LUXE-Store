@@ -1,0 +1,308 @@
+﻿@{
+    ViewData["Title"] = "Payment Successful";
+    decimal amount = ViewBag.Amount;
+}
+
+<style>
+
+    .success-page {
+        min-height: 78vh;
+        padding: 60px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+
+    .success-card {
+        width: 520px;
+        max-width: 100%;
+        padding: 50px 45px;
+        text-align: center;
+        border-radius: 30px;
+        background: rgba(255,255,255,.06);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(198,161,91,.35);
+        box-shadow: 0 30px 70px rgba(0,0,0,.5);
+        position: relative;
+        overflow: hidden;
+    }
+
+
+       
+
+        .success-card::before {
+            content: "";
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 1px solid rgba(198,161,91,.10);
+            top: -120px;
+            right: -100px;
+        }
+
+        .success-card::after {
+            content: "";
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 1px solid rgba(198,161,91,.07);
+            bottom: -110px;
+            left: -100px;
+        }
+
+
+
+
+    .success-icon {
+        width: 90px;
+        height: 90px;
+        margin: 0 auto 25px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(198,161,91,.08);
+        border: 1px solid rgba(198,161,91,.45);
+        color: #C6A15B;
+        font-size: 38px;
+        position: relative;
+        z-index: 2;
+        animation: successPop .6s ease;
+    }
+
+    @@keyframes successPop {
+
+        0% {
+            transform: scale(.5);
+            opacity: 0;
+        }
+
+        70% {
+            transform: scale(1.08);
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+
+
+    .success-label {
+        color: #C6A15B;
+        font-size: 12px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .success-card h1 {
+        color: #222;
+        font-size: 34px;
+        margin: 0 0 12px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .success-message {
+        color: #888;
+        line-height: 1.7;
+        font-size: 14px;
+        margin-bottom: 30px;
+        position: relative;
+        z-index: 2;
+    }
+
+
+   
+
+    .success-amount {
+        padding: 20px;
+        border-radius: 18px;
+        background: rgba(26,70,57,.08);
+        border: 1px solid rgba(198,161,91,.18);
+        margin-bottom: 25px;
+        position: relative;
+        z-index: 2;
+    }
+
+        .success-amount span {
+            display: block;
+            color: #888;
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 7px;
+        }
+
+        .success-amount strong {
+            color: #C6A15B;
+            font-size: 32px;
+        }
+
+
+    .transaction-info {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 5px;
+        border-top: 1px solid rgba(255,255,255,.08);
+        color: #888;
+        font-size: 12px;
+        position: relative;
+        z-index: 2;
+    }
+
+        .transaction-info strong {
+            color: #555;
+        }
+
+
+
+    .wallet-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 15px;
+        margin-top: 25px;
+        border-radius: 14px;
+        border: 1px solid #C6A15B;
+        background: #1A4639;
+        color: #C6A15B;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        transition: .3s ease;
+        position: relative;
+        z-index: 2;
+    }
+
+        .wallet-btn:hover {
+            background: #C6A15B;
+            color: #111;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(198,161,91,.25);
+        }
+
+
+    .success-note {
+        margin-top: 18px;
+        color: #777;
+        font-size: 11px;
+        position: relative;
+        z-index: 2;
+    }
+
+        .success-note i {
+            color: #C6A15B;
+            margin-right: 5px;
+        }
+
+</style>
+
+<div class="success-page">
+
+  
+    <div class="success-card">
+
+
+     
+
+        <div class="success-icon">
+
+            <i class="fa-solid fa-check"></i>
+
+        </div>
+
+
+
+        <div class="success-label">
+            LUXE Wallet
+        </div>
+
+        <h1>
+            Payment Successful
+        </h1>
+
+        <p class="success-message">
+            Your payment has been completed successfully.
+            The funds have been added to your LUXE wallet.
+        </p>
+
+
+
+        <div class="success-amount">
+
+            <span>
+                AMOUNT ADDED
+            </span>
+
+            <strong>
+                $@amount.ToString("N2")
+            </strong>
+
+        </div>
+
+
+   
+
+        <div class="transaction-info">
+
+            <span>
+                Status
+            </span>
+
+            <strong>
+                <i class="fa-solid fa-circle"
+                   style="font-size:7px; color:#C6A15B;"></i>
+
+                Completed
+            </strong>
+
+        </div>
+
+
+        <div class="transaction-info">
+
+            <span>
+                Payment Type
+            </span>
+
+            <strong>
+                Wallet Top-Up
+            </strong>
+
+        </div>
+
+
+     
+
+        <a asp-controller="Wallet"
+           asp-action="Index"
+           class="wallet-btn">
+
+            <i class="fa-solid fa-wallet"></i>
+
+            View My Wallet
+
+        </a>
+
+
+        <div class="success-note">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            Your LUXE wallet has been updated securely.
+
+        </div>
+
+    </div>
+   
+
+</div>

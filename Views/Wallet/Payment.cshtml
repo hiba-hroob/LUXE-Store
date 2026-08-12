@@ -1,0 +1,533 @@
+﻿@{
+    ViewData["Title"] = "Payment";
+    decimal amount = ViewBag.Amount;
+}
+
+<style>
+    .payment-page {
+        min-height: 78vh;
+        padding: 50px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+
+    .payment-wrapper {
+        width: 950px;
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 35px;
+        align-items: center;
+    }
+
+
+    .payment-intro {
+        padding: 20px;
+    }
+
+        .payment-intro .small-title {
+            color: #C6A15B;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .payment-intro h1 {
+            font-size: 42px;
+            margin: 0 0 15px;
+            line-height: 1.1;
+        }
+
+        .payment-intro p {
+            color: #aaa;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+    .secure-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #aaa;
+        font-size: 14px;
+    }
+
+        .secure-info i {
+            color: #C6A15B;
+            font-size: 20px;
+        }
+
+    .bank-card {
+        height: 260px;
+        border-radius: 25px;
+        padding: 30px;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient( 135deg, #163d31, #0d241e );
+        border: 1px solid rgba(198,161,91,.45);
+        box-shadow: 0 25px 60px rgba(0,0,0,.55), inset 0 0 40px rgba(198,161,91,.05);
+    }
+
+        .bank-card::before {
+            content: "";
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 1px solid rgba(198,161,91,.12);
+            right: -80px;
+            top: -80px;
+        }
+
+        .bank-card::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 1px solid rgba(198,161,91,.08);
+            left: -70px;
+            bottom: -70px;
+        }
+
+    .card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+    }
+
+    .card-brand {
+        color: #C6A15B;
+        font-size: 22px;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+
+    .chip {
+        width: 48px;
+        height: 35px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #d8bd7c, #9c7836);
+        position: relative;
+    }
+
+        .chip::after {
+            content: "";
+            position: absolute;
+            inset: 8px;
+            border: 1px solid rgba(0,0,0,.3);
+            border-radius: 5px;
+        }
+
+    .card-number-preview {
+        position: relative;
+        z-index: 2;
+        margin-top: 55px;
+        font-size: 22px;
+        letter-spacing: 4px;
+        color: #eee;
+    }
+
+    .card-bottom {
+        position: absolute;
+        z-index: 2;
+        left: 30px;
+        right: 30px;
+        bottom: 25px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .card-label {
+        color: #777;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .card-value {
+        color: #eee;
+        font-size: 13px;
+        margin-top: 4px;
+    }
+
+   
+
+    .payment-box {
+        padding: 35px;
+        border-radius: 25px;
+        background: rgba(255,255,255,.055);
+        backdrop-filter: blur(18px);
+        border: 1px solid rgba(198,161,91,.25);
+        box-shadow: 0 25px 60px rgba(0,0,0,.45);
+    }
+
+    .payment-box-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+        .payment-box-header h2 {
+            margin: 0;
+            font-size: 23px;
+        }
+
+    .amount-badge {
+        color: #C6A15B;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .input-group {
+        margin-bottom: 18px;
+    }
+
+        .input-group label {
+            display: block;
+            color: #bbb;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+    .payment-input {
+        width: 100%;
+        padding: 14px 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(0,0,0,.2);
+        color: white;
+        outline: none;
+        box-sizing: border-box;
+        transition: .25s ease;
+    }
+
+        .payment-input:focus {
+            border-color: #C6A15B;
+            box-shadow: 0 0 0 3px rgba(198,161,91,.08);
+        }
+
+        .payment-input::placeholder {
+            color: #666;
+        }
+
+    .payment-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .pay-btn {
+        width: 100%;
+        margin-top: 8px;
+        padding: 15px;
+        border: 1px solid #C6A15B;
+        border-radius: 14px;
+        background: linear-gradient( 135deg, #1A4639, #123429 );
+        color: #C6A15B;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: .3s ease;
+    }
+
+        .pay-btn:hover {
+            transform: translateY(-2px);
+            background: #C6A15B;
+            color: #111;
+            box-shadow: 0 12px 30px rgba(198,161,91,.2);
+        }
+
+    .payment-security {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 18px;
+        color: #777;
+        font-size: 12px;
+    }
+
+        .payment-security i {
+            color: #C6A15B;
+        }
+
+    .error {
+        padding: 12px;
+        border-radius: 10px;
+        margin-bottom: 18px;
+        text-align: center;
+        background: rgba(255,70,70,.08);
+        border: 1px solid rgba(255,70,70,.2);
+        color: #ff8585;
+        font-size: 13px;
+    }
+
+    .back-wallet {
+        display: block;
+        margin-top: 18px;
+        text-align: center;
+        color: #777;
+        text-decoration: none;
+        font-size: 13px;
+        transition: .25s;
+    }
+
+        .back-wallet:hover {
+            color: #C6A15B;
+        }
+
+    @@media (max-width: 800px) {
+
+        .payment-wrapper {
+            grid-template-columns: 1fr;
+            max-width: 500px;
+        }
+
+        .payment-intro {
+            padding: 0;
+        }
+
+            .payment-intro h1 {
+                font-size: 32px;
+            }
+
+        .bank-card {
+            height: 230px;
+        }
+
+        .card-number-preview {
+            font-size: 18px;
+            letter-spacing: 3px;
+        }
+    }
+</style>
+
+<div class="payment-page">
+
+
+    <div class="payment-wrapper">
+
+
+        <div class="payment-intro">
+
+            <div class="small-title">
+               LUXE Wallet
+            </div>
+
+            <h1>
+                Secure & Elegant
+                <br />
+                Payment
+            </h1>
+
+            <p>
+                Add funds to your  LUXE wallet
+                through our secure payment experience.
+            </p>
+
+
+            <div class="bank-card">
+
+                <div class="card-top">
+
+                    <div class="card-brand">
+                        LUXE
+                    </div>
+
+                    <div class="chip"></div>
+
+                </div>
+
+
+                <div class="card-number-preview">
+                    4242&nbsp;&nbsp;4242&nbsp;&nbsp;4242&nbsp;&nbsp;4242
+                </div>
+
+
+                <div class="card-bottom">
+
+                    <div>
+                        <div class="card-label">
+                            Card Holder
+                        </div>
+
+                        <div class="card-value">
+                            LUXE MEMBER
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="card-label">
+                            Expires
+                        </div>
+
+                        <div class="card-value">
+                            12/30
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="secure-info">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <span>
+                    Secure demo payment
+                </span>
+
+            </div>
+
+        </div>
+
+
+      
+
+        <div class="payment-box">
+
+            <div class="payment-box-header">
+
+                <h2>
+                    Payment Details
+                </h2>
+
+                <div class="amount-badge">
+                    $@amount.ToString("0.00")
+                </div>
+
+            </div>
+
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="error">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    @ViewBag.Error
+                </div>
+            }
+
+
+            <form asp-action="Payment" method="post">
+
+                <input type="hidden"
+                       name="amount"
+                       value="@amount" />
+
+
+                <div class="input-group">
+
+                    <label>
+                        Card Number
+                    </label>
+
+                    <input type="text"
+                           name="cardNumber"
+                           class="payment-input"
+                           placeholder="4242 4242 4242 4242"
+                           autocomplete="off"
+                           required />
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Card Holder
+                    </label>
+
+                    <input type="text"
+                           name="cardHolder"
+                           class="payment-input"
+                           placeholder="Enter card holder name"
+                           autocomplete="off"
+                           required />
+
+                </div>
+
+
+                <div class="payment-row">
+
+                    <div class="input-group">
+
+                        <label>
+                            Expiry Date
+                        </label>
+
+                        <input type="text"
+                               name="expiry"
+                               class="payment-input"
+                               placeholder="MM / YY"
+                               maxlength="5"
+                               autocomplete="off"
+                               required />
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            CVV
+                        </label>
+
+                        <input type="password"
+                               name="cvv"
+                               class="payment-input"
+                               placeholder="123"
+                               maxlength="3"
+                               autocomplete="off"
+                               required />
+
+                    </div>
+
+                </div>
+
+
+                <button type="submit"
+                        class="pay-btn">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    Pay $@amount.ToString("0.00")
+
+                </button>
+
+            </form>
+
+
+            <div class="payment-security">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                Demo payment — no real money is charged.
+
+            </div>
+
+
+            <a asp-action="Index"
+               class="back-wallet">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to Wallet
+
+            </a>
+
+        </div>
+
+    </div>
+  
+
+</div>

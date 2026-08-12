@@ -1,0 +1,408 @@
+﻿@model Webproject.Models.User
+
+@{
+    ViewData["Title"] = "Sign In";
+}
+<style>
+
+    .login-page {
+      
+        min-height: 85vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient( rgba(0,0,0,.65), rgba(0,0,0,.80) ), url('/imgs/mmain.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+
+
+ 
+  
+    .login-container {
+        width: 420px;
+        padding: 45px;
+        background: rgba(255,255,255,.12);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255,255,255,.25);
+        box-shadow: 0 20px 50px rgba(0,0,0,.5);
+        border-radius: 15px;
+        position: relative;
+        display: block;
+        margin-top: 60px !important;
+        margin-right: auto !important;
+        margin-bottom: 60px !important;
+        margin-left: 80px !important;
+        transform: none !important;
+    }
+
+  
+
+    .login-title {
+        text-align: center;
+        color: white;
+        font-size: 40px;
+        letter-spacing: 5px;
+        margin-bottom: 35px;
+    }
+
+
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+
+
+        .form-group label {
+            color: white;
+            display: block;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        
+        }
+
+
+
+    .form-control {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(198,161,91,.3);
+    border-radius: 12px;
+    color: white;
+    transition: all .35s ease;
+    backdrop-filter: blur(8px);
+}
+
+.form-control::placeholder {
+    color: rgba(255,255,255,.55);
+    
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #C6A15B;
+    box-shadow: 0 0 20px rgba(198,161,91,.35);
+    transform: translateY(-3px);
+    background: rgba(255,255,255,.12);
+    transition: .5s;
+}
+
+
+
+    .login-button {
+        width: 100%;
+        padding: 14px;
+        margin-top: 20px;
+        background: #111;
+        color: #C6A15B;
+        border:1px solid ;
+        font-weight: bold;
+        letter-spacing: 3px;
+        position: relative;
+        overflow: hidden;
+        transition: .4s;
+        border-radius:20px;
+    }
+
+
+
+        .login-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient( 120deg, transparent, rgba(255,255,255,.8), transparent );
+            transition: .5s;
+        }
+
+
+
+        .login-button:hover::before {
+            left: 100%;
+        }
+
+
+
+        .login-button:hover {
+            background: #111;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(198,161,91,.5);
+            border: 1px solid #C6A15B;
+        }
+
+
+
+    .register-link {
+        text-align: center;
+        margin-top: 25px;
+        color: white;
+    }
+
+
+
+        .register-link a {
+            color: #C6A15B;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+    .login-banner-layout {
+        display: flex;
+        align-items: center;
+        gap: 80px;
+        margin-left: 30px;
+        min-height: 75vh;
+    }
+
+        .login-banner-layout .login-container {
+            flex-shrink: 0;
+        }
+
+        .login-banner-layout .luxe-banner {
+            flex: 1;
+            max-width: 650px;
+        }
+
+            .login-banner-layout .luxe-banner h1 {
+                color: #0F2E26;
+                font-size: 48px;
+                line-height: 1.15;
+                letter-spacing: 2px;
+                margin: 10px 0 20px;
+            }
+
+            .login-banner-layout .luxe-banner p {
+                color: #666;
+                font-size: 15px;
+                line-height: 1.8;
+                max-width: 520px;
+                margin-bottom: 30px;
+            }
+
+        .login-banner-layout .luxe-btn {
+            display: inline-block;
+            padding: 13px 28px;
+            background: #0F2E26;
+            color: #C6A15B;
+            border: 1px solid #C6A15B;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 2px;
+            transition: .35s;
+        }
+
+            .login-banner-layout .luxe-btn:hover {
+                background: #C6A15B;
+                color: #111;
+                transform: translateY(-3px);
+                box-shadow: 0 12px 25px rgba(198,161,91,.3);
+            }
+
+    @@media (max-width: 950px) {
+        .login-banner-layout {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 45px;
+            margin-left: 30px;
+            padding: 50px 20px;
+        }
+
+            .login-banner-layout .luxe-banner {
+                max-width: 600px;
+            }
+
+                .login-banner-layout .luxe-banner h1 {
+                    font-size: 38px;
+                }
+    }
+
+    .luxe-banner {
+        color: #ddd;
+        background-position: center;
+        border-radius: 30px;
+        padding: 100px 60px;
+        margin: 40px auto;
+        text-align: center;
+    }
+
+        .luxe-banner h1 {
+            font-size: 58px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ddd;  
+        }
+
+        .luxe-banner p {
+            color: #ddd;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+     
+    .luxe-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 35px;
+        padding: 16px 45px;
+        border-radius: 50px;
+        background:#0F2E26 ;
+        color: #C6A15B;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-decoration: none;
+        border: 1px solid #C6A15B;
+        position: relative;
+        overflow: hidden;
+        transition: .5s ease;
+    }
+
+
+
+        .luxe-btn::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: #0F2E26;
+            transform: translateY(100%);
+            transition: .5s ease;
+            z-index: -1;
+        }
+        .luxe-btn:hover::before {
+            transform: translateY(0);
+        }
+
+          
+        .luxe-btn:hover {
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(198,161,91,.35);
+        }
+</style>
+
+
+
+<div class="login-page">
+
+
+    <div class="login-container">
+
+
+        <h2 class="login-title">
+            SIGN IN
+        </h2>
+
+
+
+        <form asp-controller="Account" asp-action="SignIn" method="post">
+
+
+            <div class="form-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input asp-for="Email"
+                       class="form-control"
+                       type="email"
+                       placeholder="Enter your email"
+                       required />
+
+            </div>
+
+
+
+            <div class="form-group">
+
+
+                <label>
+                    Password
+                </label>
+
+
+                <input asp-for="Password"
+                       class="form-control"
+                       type="password"
+                       placeholder="Enter your password"
+                       required />
+
+
+            </div>
+
+
+            <button type="submit" class="login-button">
+                LOGIN
+            </button>
+
+
+        </form>
+
+
+
+        <div class="register-link">
+
+            Don't have an account?
+
+            <a asp-action="SignUp">
+                Register
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+    
+    <section class="luxe-banner">
+
+
+        <span style="
+            display:inline-block;
+            padding:8px 20px;
+            background:rgba(198,161,91,.15);
+            color:#C6A15B;
+            backdrop-filter:blur(10px);
+            border-radius:50px;
+            font-weight:600;
+            letter-spacing:2px;
+            border:1px solid #111;
+            margin-bottom:20px;">
+
+            LUXE COLLECTION
+
+        </span>
+
+
+
+        <h1>
+            Discover Your <br />
+            Signature Beauty
+        </h1>
+
+
+
+        <p>
+            Explore premium skincare, makeup and fragrances
+            carefully selected for elegance and confidence.
+        </p>
+
+
+
+        <a href="#products" class="luxe-btn">
+            Explore Collection
+        </a>
+
+
+    </section>
+
+</div>

@@ -1,0 +1,309 @@
+﻿@model List<Webproject.Models.Notification>
+
+@{
+    ViewData["Title"] = "Notifications";
+}
+
+<style>
+
+        .notifications-page {
+            min-height: 90vh;
+            padding: 65px 8%;
+            background: #F7F1E8;
+        }
+
+        .notifications-header {
+            max-width: 900px;
+            margin: 0 auto 55px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(198,161,91,.45);
+            padding-bottom: 25px;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+            .header-title i {
+                font-size: 35px;
+                color: #C6A15B;
+            }
+
+            .header-title h1 {
+                margin: 0;
+                color: #111;
+                letter-spacing: 5px;
+                font-size: 34px;
+            }
+
+        .header-subtitle {
+            color: #888;
+            font-size: 13px;
+            letter-spacing: 2px;
+            margin-top: 7px;
+        }
+
+        .notification-count {
+            color: #C6A15B;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+
+   
+        .notification-timeline {
+            max-width: 900px;
+            margin: auto;
+            position: relative;
+        }
+
+            .notification-timeline::before {
+                content: "";
+                position: absolute;
+                left: 25px;
+                top: 0;
+                bottom: 0;
+                width: 1px;
+                background: linear-gradient( to bottom, transparent, #C6A15B, transparent );
+            }
+
+
+        .notification-item {
+            position: relative;
+            display: flex;
+            gap: 30px;
+            margin-bottom: 35px;
+        }
+
+
+        .notification-icon {
+            min-width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #0F2E26;
+            border: 1px solid #C6A15B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #C6A15B;
+            font-size: 19px;
+            z-index: 2;
+            box-shadow: 0 0 0 8px #F7F1E8;
+        }
+
+
+        .notification-content {
+            flex: 1;
+            background: white;
+            padding: 25px 30px;
+            border-radius: 18px;
+            border: 1px solid rgba(198,161,91,.25);
+            box-shadow: 0 12px 30px rgba(0,0,0,.08);
+            transition: .35s;
+        }
+
+
+            .notification-content:hover {
+                transform: translateX(8px);
+                border-color: #C6A15B;
+                box-shadow: 0 18px 35px rgba(198,161,91,.18);
+            }
+
+
+        .notification-message {
+            color: #222;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+
+        .notification-date {
+            color: #999;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+
+
+        .unread .notification-content {
+            border-left: 4px solid #C6A15B;
+        }
+
+        .unread .notification-icon {
+            box-shadow: 0 0 0 8px #F7F1E8, 0 0 20px rgba(198,161,91,.55);
+        }
+
+
+    
+
+        .empty-notifications {
+            max-width: 600px;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+            .empty-notifications i {
+                font-size: 55px;
+                color: #C6A15B;
+                margin-bottom: 25px;
+            }
+
+            .empty-notifications h2 {
+                color: #111;
+                letter-spacing: 3px;
+            }
+
+            .empty-notifications p {
+                color: #888;
+            }
+
+
+      
+
+        .notification-back {
+            text-align: center;
+            margin-top: 55px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 13px 38px;
+            background: #0F2E26;
+            color: #C6A15B;
+            border: 1px solid #C6A15B;
+            border-radius: 50px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            transition: .35s;
+        }
+
+            .back-btn::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -120%;
+                width: 80%;
+                height: 100%;
+                background: linear-gradient( 120deg, transparent, rgba(255,255,255,.7), transparent );
+                transform: skewX(-25deg);
+                transition: .6s;
+            }
+
+            .back-btn:hover::before {
+                left: 130%;
+            }
+
+            .back-btn:hover {
+                color: white;
+                transform: translateY(-4px);
+                box-shadow: 0 12px 30px rgba(198,161,91,.35);
+            }
+
+</style>
+
+<div class="notifications-page">
+
+
+    <div class="notifications-header">
+
+        <div>
+
+            <div class="header-title">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <div>
+
+                    <h1>NOTIFICATIONS</h1>
+
+                    <div class="header-subtitle">
+                        Stay updated with LUXE
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="notification-count">
+            @Model.Count UPDATE(S)
+        </div>
+
+    </div>
+
+
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="notification-timeline">
+
+            @foreach (var notification in Model)
+            {
+                <div class="notification-item @(notification.IsRead ? "" : "unread")">
+
+                    <div class="notification-icon">
+
+                        <i class="fa-solid fa-gem"></i>
+
+                    </div>
+
+                    <div class="notification-content">
+
+                        <div class="notification-message">
+
+                            @notification.Message
+
+                        </div>
+
+                        <div class="notification-date">
+
+                            @notification.CreatedAt.ToString("dd MMMM yyyy • hh:mm tt")
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    }
+    else
+    {
+        <div class="empty-notifications">
+
+            <i class="fa-regular fa-bell-slash"></i>
+
+            <h2>NO NOTIFICATIONS</h2>
+
+            <p>
+                You are all caught up.
+            </p>
+
+        </div>
+    }
+
+
+    <div class="notification-back">
+
+        <a asp-controller="Account"
+           asp-action="Profile"
+           class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            BACK TO ACCOUNT
+
+        </a>
+
+    </div>
+ 
+
+</div>

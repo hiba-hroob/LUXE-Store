@@ -1,0 +1,148 @@
+﻿@{
+    ViewData["Title"] = "Send Message";
+}
+
+<style>
+
+    .send-page {
+        min-height: 85vh;
+        padding: 60px;
+        background: #F7F1E8;
+    }
+
+    .send-box {
+        max-width: 700px;
+        margin: 40px auto;
+        background: #111;
+        border: 1px solid #C6A15B;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 20px 50px rgba(0,0,0,.25);
+    }
+
+    .send-title {
+        text-align: center;
+        color: #C6A15B;
+        letter-spacing: 6px;
+        margin-bottom: 35px;
+    }
+
+    .send-label {
+        color: white;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .send-input,
+    .send-textarea {
+        width: 100%;
+        background: #181818;
+        color: white;
+        border: 1px solid #444;
+        border-radius: 10px;
+        padding: 13px;
+        margin-bottom: 22px;
+        outline: none;
+    }
+
+        .send-input:focus,
+        .send-textarea:focus {
+            border-color: #C6A15B;
+            box-shadow: 0 0 12px rgba(198,161,91,.2);
+        }
+
+    .send-textarea {
+        min-height: 150px;
+        resize: vertical;
+    }
+
+    .send-btn {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #C6A15B;
+        border-radius: 50px;
+        background: #0F2E26;
+        color: #C6A15B;
+        font-weight: bold;
+        letter-spacing: 2px;
+        transition: .35s;
+        cursor: pointer;
+    }
+
+        .send-btn:hover {
+            background: #0F2E26;
+            color: white;
+            box-shadow: 0 10px 30px rgba(198,161,91,.35);
+            transform: translateY(-3px);
+        }
+
+    .error-message {
+        color: #ff4d6d;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+</style>
+
+
+<div class="send-page">
+
+    <div class="send-box">
+
+        <h1 class="send-title">
+            SEND MESSAGE
+        </h1>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="error-message">
+                @ViewBag.Error
+            </div>
+        }
+
+        <form asp-action="Send" method="post">
+
+            <label class="send-label">
+                SELECT USER
+            </label>
+
+            <select name="userId" class="send-input" required>
+
+                <option value="">
+                    Select a user
+                </option>
+
+                @foreach (var user in ViewBag.Users)
+                {
+                    <option value="@user.Id">
+                        @user.FullName — @user.Email
+                    </option>
+                }
+
+            </select>
+
+
+            <label class="send-label">
+                MESSAGE
+            </label>
+
+            <textarea name="content"
+                      class="send-textarea"
+                      placeholder="Write your message..."
+                      required></textarea>
+
+
+            <button type="submit" class="send-btn">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+                SEND MESSAGE
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

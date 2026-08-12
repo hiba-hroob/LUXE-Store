@@ -1,0 +1,549 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "LUXE Wallet Management";
+
+
+decimal totalBalance = Model.Sum(x => (decimal)x.WalletBalance);
+    int customerCount = Model.Count();
+
+}
+
+<style>
+    .admin-wallet {
+        min-height: 85vh;
+        padding: 70px 45px;
+        background: #F7F1E8;
+    }
+
+    .admin-wallet-inner {
+        max-width: 1200px;
+        margin: auto;
+    }
+
+   
+
+    .wallet-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 45px;
+        gap: 30px;
+    }
+
+    .wallet-heading small {
+        color: #C6A15B;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+    }
+
+    .wallet-heading h1 {
+        margin: 10px 0;
+        color: #111;
+        font-size: 44px;
+        font-weight: 700;
+        letter-spacing: -1px;
+    }
+
+    .wallet-heading p {
+        margin: 0;
+        color: #777;
+        font-size: 15px;
+    }
+
+    .admin-badge {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 10px 17px;
+        border: 1px solid rgba(198,161,91,.4);
+        border-radius: 30px;
+        background: white;
+        color: #1A4639;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        white-space: nowrap;
+    }
+
+        .admin-badge i {
+            color: #C6A15B;
+        }
+
+
+
+    .wallet-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+        margin-bottom: 30px;
+    }
+
+    .stat-card {
+        position: relative;
+        overflow: hidden;
+        padding: 30px;
+        min-height: 145px;
+        border-radius: 22px;
+        background: #111;
+        border: 1px solid rgba(198,161,91,.35);
+        box-shadow: 0 15px 35px rgba(0,0,0,.18);
+    }
+
+        .stat-card::after {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            right: -60px;
+            top: -70px;
+            border-radius: 50%;
+            border: 1px solid rgba(198,161,91,.2);
+        }
+
+    .stat-icon {
+        width: 45px;
+        height: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 13px;
+        background: rgba(198,161,91,.1);
+        color: #C6A15B;
+        margin-bottom: 20px;
+    }
+
+    .stat-label {
+        display: block;
+        color: #888;
+        font-size: 11px;
+        letter-spacing: 2px;
+        font-weight: 600;
+    }
+
+    .stat-value {
+        display: block;
+        margin-top: 6px;
+        color: #C6A15B;
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+
+
+    .wallet-panel {
+        overflow: hidden;
+        background: white;
+        border-radius: 25px;
+        border: 1px solid rgba(198,161,91,.3);
+        box-shadow: 0 20px 45px rgba(0,0,0,.12);
+    }
+
+    .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px 30px;
+        border-bottom: 1px solid #eee5d8;
+    }
+
+    .panel-title {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+    }
+
+    .panel-title-icon {
+        width: 42px;
+        height: 42px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        background: #1A4639;
+        color: #C6A15B;
+    }
+
+    .panel-title h2 {
+        margin: 0;
+        color: #111;
+        font-size: 20px;
+    }
+
+    .panel-title p {
+        margin: 3px 0 0;
+        color: #999;
+        font-size: 12px;
+    }
+
+    .readonly-badge {
+        padding: 8px 14px;
+        border-radius: 20px;
+        background: #f5f1e9;
+        color: #1A4639;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    
+
+    .wallet-table-wrapper {
+        overflow-x: auto;
+    }
+
+    .wallet-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .wallet-table th {
+            padding: 17px 30px;
+            text-align: left;
+            background: #faf8f4;
+            color: #999;
+            font-size: 10px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .wallet-table td {
+            padding: 20px 30px;
+            color: #333;
+            border-bottom: 1px solid #f0ece5;
+            vertical-align: middle;
+        }
+
+        .wallet-table tbody tr {
+            transition: .25s ease;
+        }
+
+            .wallet-table tbody tr:hover {
+                background: #fcfaf6;
+            }
+
+            .wallet-table tbody tr:last-child td {
+                border-bottom: none;
+            }
+
+    .customer {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .customer-avatar {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background: #1A4639;
+        color: #C6A15B;
+        font-size: 16px;
+        font-weight: 700;
+        border: 2px solid rgba(198,161,91,.3);
+    }
+
+    .customer-name {
+        color: #222;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .customer-id {
+        margin-top: 3px;
+        color: #aaa;
+        font-size: 11px;
+    }
+
+
+
+    .balance {
+        color: #C6A15B;
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+
+    .active-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 12px;
+        border-radius: 20px;
+        background: rgba(26,70,57,.08);
+        color: #1A4639;
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+        .active-status i {
+            color: #C6A15B;
+            font-size: 7px;
+        }
+
+    
+    .empty-wallet {
+        padding: 70px 20px;
+        text-align: center;
+    }
+
+        .empty-wallet i {
+            margin-bottom: 18px;
+            color: #C6A15B;
+            font-size: 45px;
+        }
+
+        .empty-wallet h3 {
+            margin-bottom: 8px;
+            color: #222;
+        }
+
+        .empty-wallet p {
+            color: #999;
+            margin: 0;
+        }
+
+
+
+    @@media (max-width: 750px) {
+
+        .admin-wallet {
+            padding: 40px 20px;
+        }
+
+        .wallet-top {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .wallet-heading h1 {
+            font-size: 34px;
+        }
+
+        .wallet-stats {
+            grid-template-columns: 1fr;
+        }
+
+        .panel-header {
+            padding: 20px;
+        }
+
+        .wallet-table th,
+        .wallet-table td {
+            padding: 15px 18px;
+        }
+    }
+</style>
+
+<div class="admin-wallet">
+
+
+    <div class="admin-wallet-inner">
+
+  
+
+        <div class="wallet-top">
+
+            <div class="wallet-heading">
+
+                <small>LUXE Administration</small>
+
+                <h1>Wallet Management</h1>
+
+                <p>
+                    Monitor customer wallet balances from one place.
+                </p>
+
+            </div>
+
+            <div class="admin-badge">
+                <i class="fa-solid fa-shield-halved"></i>
+                ADMIN • READ ONLY
+            </div>
+
+        </div>
+
+
+      
+
+        <div class="wallet-stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <span class="stat-label">
+                    CUSTOMERS
+                </span>
+
+                <strong class="stat-value">
+                    @customerCount
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-coins"></i>
+                </div>
+
+                <span class="stat-label">
+                    TOTAL BALANCE
+                </span>
+
+                <strong class="stat-value">
+                    $@totalBalance.ToString("N2")
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+
+        <div class="wallet-panel">
+
+            <div class="panel-header">
+
+                <div class="panel-title">
+
+                    <div class="panel-title-icon">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+
+                    <div>
+                        <h2>Customer Wallets</h2>
+
+                        <p>
+                            Current available balances
+                        </p>
+                    </div>
+
+                </div>
+
+                <span class="readonly-badge">
+                    <i class="fa-solid fa-eye"></i>
+                    VIEW ONLY
+                </span>
+
+            </div>
+
+
+            @if (Model.Any())
+            {
+                <div class="wallet-table-wrapper">
+
+                    <table class="wallet-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>CUSTOMER</th>
+
+                                <th>AVAILABLE BALANCE</th>
+
+                                <th>STATUS</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            @foreach (var user in Model)
+                            {
+                                <tr>
+
+                                    <td>
+
+                                        <div class="customer">
+
+                                            <div class="customer-avatar">
+
+                                                @(string.IsNullOrEmpty(user.FullName)
+                                                    ? "?"
+                                                    : user.FullName.Substring(0, 1).ToUpper())
+
+                                            </div>
+
+                                            <div>
+
+                                                <div class="customer-name">
+                                                    @user.FullName
+                                                </div>
+
+                                                <div class="customer-id">
+                                                    Customer #@user.Id
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <span class="balance">
+                                            $@user.WalletBalance.ToString("N2")
+                                        </span>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <span class="active-status">
+
+                                            <i class="fa-solid fa-circle"></i>
+
+                                            Active
+
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            }
+            else
+            {
+                <div class="empty-wallet">
+
+                    <i class="fa-solid fa-wallet"></i>
+
+                    <h3>No Customer Wallets</h3>
+
+                    <p>
+                        There are currently no customer wallets to display.
+                    </p>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+    
+
+</div>
