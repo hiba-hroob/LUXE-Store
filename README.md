@@ -12,3 +12,6 @@ Freelance Project
 
 ### Development Period
 July 2026 – Present
+
+### Project Demo
+[🎥 Watch the LUXE Project Demo on YouTube](https://youtu.be/GAFu8G1Yj6E)
