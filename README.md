@@ -1,5 +1,4 @@
 # LUXE
-
 LUXE is a full-stack web application developed as a freelance project for a real client. The project focuses on building a modern, responsive, and user-friendly web experience while implementing both front-end and back-end functionality.
 
 The project is currently under active development, with continuous improvements and new features being added based on the client's requirements.
@@ -14,4 +13,7 @@ Freelance Project
 July 2026 – Present
 
 ### Project Demo
-[🎥 Watch the LUXE Project Demo on YouTube](https://youtu.be/GAFu8G1Yj6E)
+🎥 [Watch the LUXE Project Demo on YouTube](https://youtu.be/GAFu8G1Yj6E)
+
+### Project Files
+📦 [Download the LUXE Project](https://github.com/hiba-hroob/LUXE-Store/releases/tag/v1.0.0)
