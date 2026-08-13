@@ -47,7 +47,8 @@ namespace Webproject.Controllers
                 return View(messages);
             }
 
-            var userMessages = _context.Messages
+
+              var userMessages = _context.Messages
     .Where(m => m.UserId == userId.Value && m.IsFromAdmin)
     .OrderByDescending(m => m.CreatedAt)
     .ToList();
