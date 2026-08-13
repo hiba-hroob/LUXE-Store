@@ -240,21 +240,13 @@
                                 $@favorite.Product.Price
                             </span>
 
-                            <form asp-action="Remove"
-                                  method="post">
+                            <button type="button"
+                                    class="remove-favorite"
+                                    data-product-id="@favorite.ProductId">
 
-                                <input type="hidden"
-                                       name="productId"
-                                       value="@favorite.ProductId" />
+                                <i class="fa-solid fa-trash"></i>
 
-                                <button type="submit"
-                                        class="remove-favorite">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </form>
+                            </button>
 
                         </div>
 
@@ -292,3 +284,49 @@
     }
 
 </div>
+
+<script>
+    document.querySelectorAll(".remove-favorite").forEach(button => {
+
+        button.addEventListener("click", async function() {
+
+            const productId = this.dataset.productId;
+
+            try {
+
+                const formData = new FormData();
+                formData.append("productId", productId);
+
+                const response = await fetch("/Favorites/Remove", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+
+                    const card = this.closest(".favorite-card");
+
+                    if (card) {
+                        card.remove();
+                    }
+
+                 
+                    const grid = document.querySelector(".favorites-grid");
+
+                    if (grid && grid.children.length === 0) {
+                        location.reload();
+                    }
+                }
+
+            } catch (error) {
+
+                console.error("Remove favorite error:", error);
+
+            }
+
+        });
+
+    });
+</script>
