@@ -309,6 +309,26 @@
         }
     }
 
+    .message-sender {
+        color: #C6A15B;
+        font-size: 14px;
+        margin-bottom: 12px;
+        letter-spacing: 1px;
+    }
+
+        .message-sender i {
+            margin-right: 6px;
+        }
+
+        .message-sender strong {
+            color: white;
+        }
+
+        .message-sender span {
+            color: #888;
+            font-size: 12px;
+            margin-left: 5px;
+        }
 </style>
 
 
@@ -345,6 +365,22 @@
                     <!-- MESSAGE -->
 
                     <div class="message-content">
+
+                        @if (Context.Session.GetString("IsAdmin") == "true" && !message.IsFromAdmin)
+                        {
+                            <div class="message-sender">
+                                <i class="fa-solid fa-user"></i>
+
+                                From:
+                                <strong>
+                                    @message.User?.FullName
+                                </strong>
+
+                                <span>
+                                    (@message.User?.Email)
+                                </span>
+                            </div>
+                        }
 
                         <i class="fa-solid fa-envelope message-icon"></i>
 

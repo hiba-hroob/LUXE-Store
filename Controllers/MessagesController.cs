@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Webproject.Data;
 using Webproject.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Webproject.Controllers
 {
@@ -31,6 +32,7 @@ namespace Webproject.Controllers
             if (isAdmin == "true")
             {
                 var messages = _context.Messages
+                    .Include(m => m.User)
                     .Where(m => !m.IsFromAdmin)
                     .OrderByDescending(m => m.CreatedAt)
                     .ToList();
