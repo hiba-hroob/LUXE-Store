@@ -107,6 +107,55 @@ namespace Webproject.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult ChangePassword(
+    string CurrentPassword,
+    string NewPassword,
+    string ConfirmPassword)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId == null)
+            {
+                return RedirectToAction("SignIn");
+            }
+
+            if (string.IsNullOrWhiteSpace(CurrentPassword) ||
+                string.IsNullOrWhiteSpace(NewPassword) ||
+                string.IsNullOrWhiteSpace(ConfirmPassword))
+            {
+                ViewBag.Error = "Please fill in all fields.";
+                return View();
+            }
+
+            if (NewPassword != ConfirmPassword)
+            {
+                ViewBag.Error = "New passwords do not match.";
+                return View();
+            }
+
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId.Value);
+
+            if (user == null)
+            {
+                return RedirectToAction("SignIn");
+            }
+
+       
+            if (user.Password != CurrentPassword)
+            {
+                ViewBag.Error = "Current password is incorrect.";
+                return View();
+            }
+
+            user.Password = NewPassword;
+
+            _context.SaveChanges();
+
+            ViewBag.Success = "Password changed successfully.";
+
+            return View();
+        }
 
         [HttpGet]
         public IActionResult Logout()
