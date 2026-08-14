@@ -31,8 +31,7 @@ namespace Webproject.Controllers
                 HttpContext.Session.SetString("UserName", dbUser.FullName);
 
 
-                // تحديد الادمن
-                if (dbUser.Email == "hibahoroob@gmail.com")
+                if (dbUser.Email == "hiba@gmail.com")
                 {
                     HttpContext.Session.SetString("IsAdmin", "true");
                 }
