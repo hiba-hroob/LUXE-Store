@@ -2,6 +2,10 @@
     ViewData["Title"] = "Send Message";
 }
 
+@{
+    var isAdmin = Context.Session.GetString("IsAdmin") == "true";
+}
+
 <style>
 
     .send-page {
@@ -83,6 +87,15 @@
         margin-bottom: 20px;
     }
 
+    .send-to-admin {
+        background: #181818;
+        border: 1px solid #C6A15B;
+        color: #C6A15B;
+        border-radius: 12px;
+        padding: 15px;
+        margin-bottom: 22px;
+        text-align: center;
+    }
 </style>
 
 
@@ -103,24 +116,34 @@
 
         <form asp-action="Send" method="post">
 
-            <label class="send-label">
-                SELECT USER
-            </label>
+            @if (isAdmin)
+            {
+                <label class="send-label">
+                    SELECT USER
+                </label>
 
-            <select name="userId" class="send-input" required>
+                <select name="userId" class="send-input" required>
 
-                <option value="">
-                    Select a user
-                </option>
-
-                @foreach (var user in ViewBag.Users)
-                {
-                    <option value="@user.Id">
-                        @user.FullName — @user.Email
+                    <option value="">
+                        Select a user
                     </option>
-                }
 
-            </select>
+                    @foreach (var user in ViewBag.Users)
+                    {
+                        <option value="@user.Id">
+                            @user.FullName — @user.Email
+                        </option>
+                    }
+
+                </select>
+            }
+            else
+            {
+                <div class="send-to-admin">
+                    <i class="fa-solid fa-user-shield"></i>
+                    Message will be sent to Admin
+                </div>
+            }
 
 
             <label class="send-label">

@@ -196,6 +196,28 @@
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(198,161,91,.35);
         }
+
+    .login-success {
+        color: #8fd19e;
+        background: rgba(40, 167, 69, .12);
+        border: 1px solid rgba(40, 167, 69, .4);
+        border-radius: 12px;
+        padding: 12px 15px;
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 13px;
+    }
+
+    .login-error {
+        color: #ff6b6b;
+        background: rgba(255, 70, 70, .12);
+        border: 1px solid rgba(255, 70, 70, .4);
+        border-radius: 12px;
+        padding: 12px 15px;
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 13px;
+    }
 </style>
 
 <div class="login-page">
@@ -206,7 +228,23 @@
             SIGN UP
         </h2>
 
-        <form asp-action="SignUp" method="post">
+        @if (TempData["Success"] != null)
+        {
+            <div class="login-success">
+                <i class="fa-solid fa-circle-check"></i>
+                @TempData["Success"]
+            </div>
+        }
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="login-error">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                @ViewBag.Error
+            </div>
+        }
+
+        <form asp-action="SignUp" method="post" autocomplete="off">
 
             <div class="form-group">
 
@@ -225,12 +263,12 @@
             <div class="form-group">
 
                 <label>Email</label>
-
                 <input asp-for="Email"
                        class="form-control"
                        type="email"
                        placeholder="Enter your email"
-                       required />
+                       autocomplete="new-email"
+                       value="" />
 
                 <span asp-validation-for="Email" class="text-danger"></span>
 
@@ -244,7 +282,8 @@
                        class="form-control"
                        type="password"
                        placeholder="Create your password"
-                       required />
+                       autocomplete="new-password"
+                       value="" />
 
                 <span asp-validation-for="Password" class="text-danger"></span>
 

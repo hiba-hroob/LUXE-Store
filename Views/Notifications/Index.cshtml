@@ -206,10 +206,33 @@
                 box-shadow: 0 12px 30px rgba(198,161,91,.35);
             }
 
+    .delete-notification-form {
+        margin-top: 15px;
+        text-align: right;
+    }
+
+    .delete-notification-btn {
+        padding: 9px 18px;
+        border-radius: 10px;
+        border: 1px solid rgba(217, 4, 41, .5);
+        background: transparent;
+        color: #d90429;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .3s ease;
+    }
+
+        .delete-notification-btn:hover {
+            background: #d90429;
+            color: white;
+            border-color: #d90429;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(217, 4, 41, .25);
+        }
+
 </style>
-
 <div class="notifications-page">
-
 
     <div class="notifications-header">
 
@@ -234,7 +257,7 @@
         </div>
 
         <div class="notification-count">
-            @Model.Count UPDATE(S)
+            @(Model?.Count ?? 0) UPDATE(S)
         </div>
 
     </div>
@@ -254,6 +277,7 @@
 
                     </div>
 
+
                     <div class="notification-content">
 
                         <div class="notification-message">
@@ -267,6 +291,27 @@
                             @notification.CreatedAt.ToString("dd MMMM yyyy • hh:mm tt")
 
                         </div>
+
+
+                        <!-- زر حذف الإشعار -->
+
+                        <form asp-controller="Notifications"
+                              asp-action="Delete"
+                              asp-route-id="@notification.Id"
+                              method="post"
+                              class="delete-notification-form"
+                              onsubmit="return confirm('Are you sure you want to delete this notification?');">
+
+                            <button type="submit"
+                                    class="delete-notification-btn">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                                Delete
+
+                            </button>
+
+                        </form>
 
                     </div>
 
@@ -304,6 +349,5 @@
         </a>
 
     </div>
- 
 
 </div>

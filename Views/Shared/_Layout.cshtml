@@ -626,8 +626,6 @@
 
                     @if (Context.Session.GetInt32("UserId") != null)
                     {
-                   
-
                         var userId = Context.Session.GetInt32("UserId");
 
                         var db = Context.RequestServices
@@ -636,8 +634,28 @@
                         var unreadNotifications = db.Notifications
                             .Count(n => n.UserId == userId.Value && !n.IsRead);
 
-                        var unreadMessages = db.Messages
-                            .Count(m => m.UserId == userId.Value && !m.IsRead);
+
+                        var isAdmin = Context.Session.GetString("IsAdmin") == "true";
+
+                        int unreadMessages;
+
+                        if (isAdmin)
+                        {
+                           
+                            unreadMessages = db.Messages
+                                .Count(m =>
+                                    !m.IsRead &&
+                                    !m.IsFromAdmin);
+                        }
+                        else
+                        {
+                       
+                            unreadMessages = db.Messages
+                                .Count(m =>
+                                    m.UserId == userId.Value &&
+                                    !m.IsRead &&
+                                    m.IsFromAdmin);
+                        }
 
 
                         <a asp-controller="Notifications"
@@ -651,7 +669,6 @@
                             </span>
 
                         </a>
-
 
 
                         <a asp-controller="Messages"
@@ -668,8 +685,6 @@
                     }
                     else
                     {
-
-
                         <a asp-controller="Account"
                            asp-action="SignIn"
                            class="notification-bell">

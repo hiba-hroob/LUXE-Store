@@ -285,6 +285,25 @@
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(198,161,91,.35);
         }
+
+    .signin-error {
+        background: rgba(180, 40, 40, 0.12);
+        border: 1px solid rgba(255, 80, 80, 0.5);
+        color: #ff8b8b;
+        padding: 12px 15px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        text-align: left;
+    }
+
+        .signin-error i {
+            color: #ff6b6b;
+            font-size: 15px;
+        }
 </style>
 
 
@@ -299,7 +318,18 @@
             SIGN IN
         </h2>
 
+        @if (ViewBag.Error != null)
+        {
+            <div class="signin-error">
 
+                <i class="fa-solid fa-circle-exclamation"></i>
+
+                <span>
+                    @ViewBag.Error
+                </span>
+
+            </div>
+        }
 
         <form asp-controller="Account" asp-action="SignIn" method="post">
 

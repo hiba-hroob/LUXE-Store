@@ -70,7 +70,7 @@ namespace Webproject.Controllers
             var notification = new Notification
             {
                 UserId = userId.Value,
-                Message = $"Your order #{order.Id} has been confirmed successfully.",
+                Message = $"Your order has been confirmed successfully.",
                 CreatedAt = DateTime.Now,
                 IsRead = false
             };

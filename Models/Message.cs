@@ -20,5 +20,7 @@ namespace Webproject.Models
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public bool IsRead { get; set; } = false;
+
+        public bool IsFromAdmin { get; set; } = false;
     }
 }

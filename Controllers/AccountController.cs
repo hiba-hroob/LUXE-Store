@@ -15,9 +15,25 @@ namespace Webproject.Controllers
         }
 
         [HttpGet]
+       
         public IActionResult SignIn()
         {
-            return View();
+            var user = new User();
+
+            var email = TempData["SignUpEmail"] as string;
+            var password = TempData["SignUpPassword"] as string;
+
+            if (!string.IsNullOrEmpty(email))
+            {
+                user.Email = email;
+            }
+
+            if (!string.IsNullOrEmpty(password))
+            {
+                user.Password = password;
+            }
+
+            return View(user);
         }
 
         [HttpPost]
@@ -48,28 +64,33 @@ namespace Webproject.Controllers
         [HttpGet]
         public IActionResult SignUp()
         {
-            return View();
+            return View(new User());
         }
 
         [HttpPost]
         public IActionResult SignUp(User user)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var exists = _context.Users.Any(u => u.Email == user.Email);
-                if (exists)
-                {
-                    ViewBag.Error = "This email is already registered.";
-                    return View();
-                }
-
-                _context.Users.Add(user);
-                _context.SaveChanges();
-
-                return RedirectToAction("SignIn");
+                ViewBag.Error = "Please fill in all fields correctly.";
+                return View(user);
             }
 
-            return View(user);
+            var exists = _context.Users.Any(u => u.Email == user.Email);
+
+            if (exists)
+            {
+                ViewBag.Error = "This email is already registered.";
+                return View(user);
+            }
+
+            _context.Users.Add(user);
+            _context.SaveChanges();
+
+            TempData["SignUpEmail"] = user.Email;
+            TempData["SignUpPassword"] = user.Password;
+
+            return RedirectToAction("SignIn");
         }
 
         [HttpGet]
@@ -107,6 +128,49 @@ namespace Webproject.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult ChangePassword(
+    string CurrentPassword,
+    string NewPassword,
+    string ConfirmPassword)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId == null)
+            {
+                return RedirectToAction("SignIn");
+            }
+
+            var user = _context.Users.Find(userId.Value);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            if (user.Password != CurrentPassword)
+            {
+                ViewBag.Error = "Current password is incorrect.";
+                return View();
+            }
+
+        
+            if (NewPassword != ConfirmPassword)
+            {
+                ViewBag.Error = "New passwords do not match.";
+                return View();
+            }
+
+     
+            user.Password = NewPassword;
+
+            _context.Users.Update(user);
+            _context.SaveChanges();
+
+            ViewBag.Success = "Password updated successfully.";
+
+            return View();
+        }
 
         [HttpGet]
         public IActionResult Logout()
