@@ -6,112 +6,56 @@
 
     .send-page {
         min-height: 85vh;
-        padding: 60px 20px;
+        padding: 60px;
         background: #F7F1E8;
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
     .send-box {
-        width: 100%;
         max-width: 700px;
+        margin: 40px auto;
         background: #111;
         border: 1px solid #C6A15B;
-        border-radius: 24px;
-        padding: 45px;
+        border-radius: 20px;
+        padding: 40px;
         box-shadow: 0 20px 50px rgba(0,0,0,.25);
-        position: relative;
-        overflow: hidden;
-    }
-
-        .send-box::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 3px;
-            background: #C6A15B;
-            box-shadow: 0 0 15px rgba(198,161,91,.7);
-        }
-
-    .send-icon {
-        width: 70px;
-        height: 70px;
-        margin: 0 auto 20px;
-        border-radius: 50%;
-        border: 1px solid #C6A15B;
-        background: #0F2E26;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #C6A15B;
-        font-size: 28px;
-        box-shadow: 0 10px 30px rgba(198,161,91,.15);
     }
 
     .send-title {
         text-align: center;
         color: #C6A15B;
         letter-spacing: 6px;
-        margin-bottom: 10px;
-        font-size: 32px;
-    }
-
-    .send-subtitle {
-        text-align: center;
-        color: #888;
-        font-size: 14px;
-        letter-spacing: 1px;
         margin-bottom: 35px;
     }
 
     .send-label {
-        color: #C6A15B;
-        letter-spacing: 1.5px;
-        margin-bottom: 9px;
+        color: white;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
         display: block;
-        font-size: 13px;
-        font-weight: 600;
     }
 
     .send-input,
     .send-textarea {
         width: 100%;
-        box-sizing: border-box;
         background: #181818;
         color: white;
         border: 1px solid #444;
-        border-radius: 12px;
-        padding: 14px 16px;
-        margin-bottom: 25px;
+        border-radius: 10px;
+        padding: 13px;
+        margin-bottom: 22px;
         outline: none;
-        font-size: 14px;
-        transition: .3s ease;
     }
 
         .send-input:focus,
         .send-textarea:focus {
             border-color: #C6A15B;
-            box-shadow: 0 0 0 3px rgba(198,161,91,.1);
-        }
-
-        .send-input option {
-            background: #181818;
-            color: white;
+            box-shadow: 0 0 12px rgba(198,161,91,.2);
         }
 
     .send-textarea {
-        min-height: 160px;
+        min-height: 150px;
         resize: vertical;
-        line-height: 1.6;
     }
-
-        .send-textarea::placeholder {
-            color: #777;
-        }
 
     .send-btn {
         width: 100%;
@@ -122,68 +66,21 @@
         color: #C6A15B;
         font-weight: bold;
         letter-spacing: 2px;
-        transition: .35s ease;
+        transition: .35s;
         cursor: pointer;
-        font-size: 14px;
-        position: relative;
-        overflow: hidden;
     }
-
-        .send-btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -120%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient( 120deg, transparent, rgba(255,255,255,.45), transparent );
-            transition: .6s;
-        }
-
-        .send-btn:hover::before {
-            left: 120%;
-        }
 
         .send-btn:hover {
             background: #0F2E26;
             color: white;
+            box-shadow: 0 10px 30px rgba(198,161,91,.35);
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(198,161,91,.35);
-        }
-
-        .send-btn i {
-            margin-right: 8px;
-            transition: .3s;
-        }
-
-        .send-btn:hover i {
-            transform: translateX(4px);
         }
 
     .error-message {
         color: #ff4d6d;
-        background: rgba(255,77,109,.08);
-        border: 1px solid rgba(255,77,109,.3);
-        border-radius: 10px;
         text-align: center;
-        padding: 12px;
-        margin-bottom: 25px;
-    }
-
-    @@media (max-width: 600px) {
-
-        .send-page {
-            padding: 35px 15px;
-        }
-
-        .send-box {
-            padding: 30px 22px;
-        }
-
-        .send-title {
-            font-size: 25px;
-            letter-spacing: 4px;
-        }
+        margin-bottom: 20px;
     }
 
 </style>
@@ -193,18 +90,9 @@
 
     <div class="send-box">
 
-        <div class="send-icon">
-            <i class="fa-solid fa-paper-plane"></i>
-        </div>
-
         <h1 class="send-title">
             SEND MESSAGE
         </h1>
-
-        <p class="send-subtitle">
-            Send a personal message to a LUXE customer
-        </p>
-
 
         @if (ViewBag.Error != null)
         {
@@ -213,20 +101,13 @@
             </div>
         }
 
-
-        <form asp-controller="Messages"
-              asp-action="Send"
-              method="post">
-
+        <form asp-action="Send" method="post">
 
             <label class="send-label">
-                <i class="fa-solid fa-user"></i>
                 SELECT USER
             </label>
 
-            <select name="userId"
-                    class="send-input"
-                    required>
+            <select name="userId" class="send-input" required>
 
                 <option value="">
                     Select a user
@@ -234,11 +115,8 @@
 
                 @foreach (var user in ViewBag.Users)
                 {
-                    <option value="@user.Id"
-                            selected="@(ViewBag.SelectedUserId != null && ViewBag.SelectedUserId == user.Id ? "selected" : null)">
-
+                    <option value="@user.Id">
                         @user.FullName — @user.Email
-
                     </option>
                 }
 
@@ -246,7 +124,6 @@
 
 
             <label class="send-label">
-                <i class="fa-solid fa-message"></i>
                 MESSAGE
             </label>
 
@@ -256,8 +133,7 @@
                       required></textarea>
 
 
-            <button type="submit"
-                    class="send-btn">
+            <button type="submit" class="send-btn">
 
                 <i class="fa-solid fa-paper-plane"></i>
 

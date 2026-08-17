@@ -2,18 +2,15 @@
 
 @{
     ViewData["Title"] = "Messages";
-    var isAdmin = Context.Session.GetString("IsAdmin") == "true";
 }
 
 <style>
 
-
     .messages-page {
         min-height: 85vh;
-        padding: 60px 30px;
+        padding: 60px;
         background: #F7F1E8;
     }
-
 
     .messages-header {
         text-align: center;
@@ -24,34 +21,28 @@
             color: #111;
             font-size: 42px;
             letter-spacing: 7px;
-            margin: 0 0 10px;
-            font-weight: 700;
+            margin-bottom: 10px;
         }
 
         .messages-header p {
             color: #777;
             letter-spacing: 2px;
-            margin: 0;
         }
-
 
     .messages-container {
         max-width: 850px;
         margin: auto;
     }
 
-
-   
-
     .message-card {
         position: relative;
         background: #111;
         border: 1px solid rgba(198,161,91,.45);
         border-radius: 18px;
-        padding: 28px 30px;
+        padding: 25px 30px;
         margin-bottom: 20px;
         overflow: hidden;
-        transition: .35s ease;
+        transition: .35s;
     }
 
         .message-card::before {
@@ -70,7 +61,11 @@
             box-shadow: 0 15px 35px rgba(198,161,91,.25);
         }
 
-
+    .message-icon {
+        color: #C6A15B;
+        font-size: 24px;
+        margin-right: 12px;
+    }
 
     .message-content {
         color: white;
@@ -79,112 +74,12 @@
         line-height: 1.7;
     }
 
-    .message-icon {
-        color: #C6A15B;
-        font-size: 24px;
-        margin-right: 12px;
-    }
-
-
-   
-
     .message-date {
         margin-top: 12px;
         color: #888;
         font-size: 13px;
         letter-spacing: 1px;
     }
-
-
-
-    .message-actions {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 10px;
-        margin-top: 22px;
-    }
-
-
-    .reply-message-btn {
-        min-height: 40px;
-        padding: 9px 18px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        background: #0F2E26;
-        color: #C6A15B !important;
-        border: 1px solid #C6A15B;
-        border-radius: 10px;
-        text-decoration: none !important;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        transition: .3s ease;
-    }
-
-        .reply-message-btn:hover {
-            background: #C6A15B;
-            color: #111 !important;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(198,161,91,.3);
-        }
-
-        .reply-message-btn i {
-            color: #C6A15B;
-            transition: .3s ease;
-        }
-
-        .reply-message-btn:hover i {
-            color: #111;
-            transform: translateX(3px);
-        }
-
-
-    /* =========================
-           DELETE FORM
-        ========================= */
-
-    .delete-message-form {
-        margin: 0;
-    }
-
-
-    /* =========================
-           DELETE BUTTON
-        ========================= */
-
-    .delete-message-btn {
-        min-height: 40px;
-        padding: 9px 18px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        background: transparent;
-        color: #d90429;
-        border: 1px solid rgba(217,4,41,.5);
-        border-radius: 10px;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        cursor: pointer;
-        transition: .3s ease;
-    }
-
-        .delete-message-btn:hover {
-            background: #d90429;
-            color: white;
-            border-color: #d90429;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(217,4,41,.25);
-        }
-
-
-    /* =========================
-           EMPTY MESSAGES
-        ========================= */
 
     .empty-messages {
         text-align: center;
@@ -201,140 +96,25 @@
             margin-bottom: 20px;
         }
 
-        .empty-messages h3 {
-            color: white;
-            margin-bottom: 10px;
-        }
+        .send-message-container
+        { width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 35px; margin-bottom: 40px; }
+        .send-message-btn { display: inline-flex; align-items: center; justify-content: 
+            center; gap: 10px; padding: 14px 36px; background: #0F2E26; color: #C6A15B !important; border: 1px solid #C6A15B; 
+            border-radius: 14px; text-decoration: none !important; font-size: 14px; font-weight: 600; letter-spacing: 2px; position: 
+            relative; overflow: hidden; transition: .35s ease; box-shadow: 0 5px 18px rgba(0,0,0,.2); } 
+            .send-message-btn::before { content: ""; position: absolute; top: 0; left: -120%; width: 100%; height: 100%;
+                background: linear-gradient( 120deg, transparent, rgba(255,255,255,.45), transparent ); transition: .5s; } 
+                .send-message-btn:hover { color: white !important;  background: #0F2E26;
+                    transform: translateY(-4px); border-color: #C6A15B;
+                    box-shadow: 0 10px 30px rgba(198,161,91,.35), 0 0 15px rgba(198,161,91,.2); } 
+                    .send-message-btn:hover::before { left: 120%; } 
+                    .send-message-btn i { color: #C6A15B; transition: .35s; } 
+                    .send-message-btn:hover i { color: white; transform: translateX(3px); }
 
-
-    /* =========================
-           CONTACT / SEND BUTTON
-        ========================= */
-
-    .send-message-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 35px;
-        margin-bottom: 40px;
-    }
-
-    .send-message-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 14px 36px;
-        background: #0F2E26;
-        color: #C6A15B !important;
-        border: 1px solid #C6A15B;
-        border-radius: 14px;
-        text-decoration: none !important;
-        font-size: 14px;
-        font-weight: 600;
-        letter-spacing: 2px;
-        position: relative;
-        overflow: hidden;
-        transition: .35s ease;
-        box-shadow: 0 5px 18px rgba(0,0,0,.2);
-    }
-
-        .send-message-btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -120%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient( 120deg, transparent, rgba(255,255,255,.45), transparent );
-            transition: .5s;
-        }
-
-        .send-message-btn:hover::before {
-            left: 120%;
-        }
-
-        .send-message-btn:hover {
-            color: white !important;
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(198,161,91,.35), 0 0 15px rgba(198,161,91,.2);
-        }
-
-        .send-message-btn i {
-            color: #C6A15B;
-            transition: .35s;
-        }
-
-        .send-message-btn:hover i {
-            color: white;
-            transform: translateX(3px);
-        }
-
-
-    /* =========================
-           MOBILE
-        ========================= */
-
-    @@media (max-width: 600px) {
-
-        .messages-page {
-            padding: 40px 15px;
-        }
-
-        .messages-header h1 {
-            font-size: 30px;
-            letter-spacing: 4px;
-        }
-
-        .message-card {
-            padding: 22px 20px;
-        }
-
-        .message-content {
-            font-size: 15px;
-        }
-
-        .message-actions {
-            justify-content: stretch;
-        }
-
-        .reply-message-btn,
-        .delete-message-btn {
-            flex: 1;
-        }
-
-        .send-message-btn {
-            width: 100%;
-        }
-    }
-
-    .message-sender {
-        color: #C6A15B;
-        font-size: 14px;
-        margin-bottom: 12px;
-        letter-spacing: 1px;
-    }
-
-        .message-sender i {
-            margin-right: 6px;
-        }
-
-        .message-sender strong {
-            color: white;
-        }
-
-        .message-sender span {
-            color: #888;
-            font-size: 12px;
-            margin-left: 5px;
-        }
 </style>
 
 
 <div class="messages-page">
-
-    <!-- HEADER -->
 
     <div class="messages-header">
 
@@ -349,47 +129,21 @@
     </div>
 
 
-    <!-- MESSAGES -->
-
     <div class="messages-container">
 
         @if (Model != null && Model.Any())
         {
-
             foreach (var message in Model)
             {
-
                 <div class="message-card">
 
-
-                    <!-- MESSAGE -->
-
                     <div class="message-content">
-
-                        @if (Context.Session.GetString("IsAdmin") == "true" && !message.IsFromAdmin)
-                        {
-                            <div class="message-sender">
-                                <i class="fa-solid fa-user"></i>
-
-                                From:
-                                <strong>
-                                    @message.User?.FullName
-                                </strong>
-
-                                <span>
-                                    (@message.User?.Email)
-                                </span>
-                            </div>
-                        }
 
                         <i class="fa-solid fa-envelope message-icon"></i>
 
                         @message.Content
 
                     </div>
-
-
-                    <!-- DATE -->
 
                     <div class="message-date">
 
@@ -399,116 +153,28 @@
 
                     </div>
 
-
-                    <!-- ACTIONS -->
-
-                    <div class="message-actions">
-
-
-                        <!-- REPLY - ADMIN ONLY -->
-                        @if ((isAdmin && !message.IsFromAdmin) || (!isAdmin && message.IsFromAdmin))
-                        {
-                            <a asp-controller="Messages"
-                               asp-action="Reply"
-                               asp-route-id="@message.Id"
-                               class="reply-message-btn">
-
-                                <i class="fa-solid fa-reply"></i>
-                                Reply
-
-                            </a>
-                        }
-
-                        <!-- DELETE -->
-
-                        <form asp-controller="Messages"
-                              asp-action="Delete"
-                              asp-route-id="@message.Id"
-                              method="post"
-                              class="delete-message-form"
-                              onsubmit="return confirm('Are you sure you want to delete this message?');">
-
-                            <button type="submit"
-                                    class="delete-message-btn">
-
-                                <i class="fa-solid fa-trash"></i>
-
-                                Delete
-
-                            </button>
-
-                        </form>
-
-
-                    </div>
-
-
                 </div>
-
             }
-
         }
         else
         {
-
-            <!-- EMPTY -->
-
             <div class="empty-messages">
 
                 <i class="fa-regular fa-envelope"></i>
 
-                <h3>
-                    No Messages Yet
-                </h3>
+                <h3>No Messages Yet</h3>
 
                 <p>
                     You don't have any messages at the moment.
                 </p>
 
             </div>
-
         }
 
     </div>
 
 
-    <!-- BOTTOM BUTTON -->
-
-    <div class="send-message-container">
-
-        @if (isAdmin)
-        {
-
-            <!-- ADMIN -->
-
-            <a asp-controller="Messages"
-               asp-action="Send"
-               class="send-message-btn">
-
-                <i class="fa-solid fa-paper-plane"></i>
-
-                Send Message
-
-            </a>
-
-        }
-        else
-        {
-
-            <!-- CUSTOMER -->
-
-            <a asp-controller="Messages"
-               asp-action="ContactAdmin"
-               class="send-message-btn">
-
-                <i class="fa-solid fa-headset"></i>
-
-                Contact Admin
-
-            </a>
-
-        }
-
-    </div>
-
+    <div class="send-message-container"> <a asp-controller="Messages"
+        asp-action="Send" class="send-message-btn"> <i class="fa-solid fa-paper-plane"></i> Send Message </a> 
+        </div>
 </div>

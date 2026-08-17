@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LUXE</title>
+    <title>@ViewData["Title"] - Webproject</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Webproject.styles.css" asp-append-version="true" />
@@ -626,35 +626,19 @@
 
                     @if (Context.Session.GetInt32("UserId") != null)
                     {
+                   
+
                         var userId = Context.Session.GetInt32("UserId");
 
                         var db = Context.RequestServices
                             .GetRequiredService<Webproject.Data.ApplicationDbContext>();
 
-                        var isAdmin = Context.Session.GetString("IsAdmin") == "true";
-
                         var unreadNotifications = db.Notifications
                             .Count(n => n.UserId == userId.Value && !n.IsRead);
 
-                        int unreadMessages;
+                        var unreadMessages = db.Messages
+                            .Count(m => m.UserId == userId.Value && !m.IsRead);
 
-                        if (isAdmin)
-                        {
-                            // الأدمن: رسائل العملاء غير المقروءة
-                            unreadMessages = db.Messages
-                                .Count(m => !m.IsFromAdmin && !m.IsRead);
-                        }
-                        else
-                        {
-                            // العميل: رسائل الأدمن غير المقروءة
-                            unreadMessages = db.Messages
-                                .Count(m => m.UserId == userId.Value
-                                         && m.IsFromAdmin
-                                         && !m.IsRead);
-                        }
-
-
-                        <!-- Notifications -->
 
                         <a asp-controller="Notifications"
                            asp-action="Index"
@@ -669,7 +653,6 @@
                         </a>
 
 
-                        <!-- Messages -->
 
                         <a asp-controller="Messages"
                            asp-action="Index"
@@ -685,7 +668,7 @@
                     }
                     else
                     {
-                        <!-- Guest -->
+
 
                         <a asp-controller="Account"
                            asp-action="SignIn"
@@ -714,6 +697,7 @@
                     }
 
                 </div>
+        
 
             </nav>
         </header>

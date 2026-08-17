@@ -81,22 +81,20 @@ public class CartController : Controller
             return RedirectToAction("SignIn", "Account");
         }
 
-
         var item = cart.FirstOrDefault(c => c.ProductId == id);
-
 
         if (item != null)
         {
             cart.Remove(item);
         }
 
+        int cartCount = cart.Sum(c => c.Quantity);
+
+        HttpContext.Session.SetInt32("CartCount", cartCount);
 
         return RedirectToAction("Index");
     }
 
-
-
-   
     public IActionResult Increase(int id)
     {
         if (HttpContext.Session.GetInt32("UserId") == null)
