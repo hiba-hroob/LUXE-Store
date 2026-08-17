@@ -16,4 +16,4 @@ July 2026 – Present
 🎥 [Watch the LUXE Project Demo on YouTube](https://youtu.be/GAFu8G1Yj6E)
 
 ### Project Files
-📦 [Download the LUXE Project](https://github.com/hiba-hroob/LUXE-Store/releases/tag/v1.0.0)
+📦 sha256:cab30ea5a9d432b607fa6f8d21bb2a142fbb6dc603bf85f84d6ed239600c642b
