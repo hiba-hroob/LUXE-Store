@@ -9,6 +9,10 @@ public class CartController : Controller
     private readonly ApplicationDbContext _context;
 
     private static List<CartItem> cart = new List<CartItem>();
+    public static List<CartItem> GetCart()
+    {
+        return cart;
+    }
 
     public CartController(ApplicationDbContext context)
     {
@@ -18,6 +22,8 @@ public class CartController : Controller
 
     public IActionResult AddToCart(int id)
     {
+
+
         if (HttpContext.Session.GetInt32("UserId") == null)
         {
             return RedirectToAction("SignIn", "Account");

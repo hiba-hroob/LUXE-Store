@@ -26,6 +26,8 @@ namespace Webproject.Controllers
 
         public IActionResult ConfirmOrder(List<int> selectedProducts)
         {
+
+
             var userId = HttpContext.Session.GetInt32("UserId");
 
             if (userId == null)
@@ -76,6 +78,13 @@ namespace Webproject.Controllers
             _context.Notifications.Add(notification);
 
             _context.SaveChanges();
+
+            CartController.GetCart().Clear();
+            HttpContext.Session.SetInt32("CartCount", 0);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("MyOrders", "Orders");
 
             return RedirectToAction("MyOrders", "Orders");
         }
