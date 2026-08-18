@@ -13,7 +13,7 @@ Freelance Project
 July 2026 – Present
 
 ### Project Demo
-🎥 [Watch the LUXE Project Demo on YouTube](https://youtu.be/GAFu8G1Yj6E)
+https://github.com/hiba-hroob/LUXE-Store/releases/download/v1.2.0/LUXE-Store-v1.2.0.zip
 
 ### Project Files
 https://github.com/hiba-hroob/LUXE-Store/releases/download/v1.1.0/LUXE-Store-v1.1.0.zip
