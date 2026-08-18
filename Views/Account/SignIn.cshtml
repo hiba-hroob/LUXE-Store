@@ -331,8 +331,10 @@
             </div>
         }
 
-        <form asp-controller="Account" asp-action="SignIn" method="post">
-
+        <form asp-controller="Account"
+              asp-action="SignIn"
+              method="post"
+              autocomplete="new-password">
 
             <div class="form-group">
 
@@ -344,37 +346,31 @@
                        class="form-control"
                        type="email"
                        placeholder="Enter your email"
+                       autocomplete="email"
                        required />
 
             </div>
 
-
-
             <div class="form-group">
-
 
                 <label>
                     Password
                 </label>
 
-
                 <input asp-for="Password"
                        class="form-control"
                        type="password"
                        placeholder="Enter your password"
+                       autocomplete="new-password"
                        required />
 
-
             </div>
-
 
             <button type="submit" class="login-button">
                 LOGIN
             </button>
 
-
         </form>
-
 
 
         <div class="register-link">
