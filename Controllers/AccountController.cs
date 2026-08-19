@@ -177,8 +177,6 @@ namespace Webproject.Controllers
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Products");
-
-
         }
 
     }
