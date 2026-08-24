@@ -227,21 +227,12 @@
                 }
 
 
-            .glamora-footer {
-                background: #111111;
-            }
-
             .footer-logo {
                 color: #C6A15B;
                 font-size: 30px;
                 letter-spacing: 5px;
                 font-family: 'Segoe UI',sans-serif;
             }
-
-            .glamora-footer h5 {
-                color: #C6A15B;
-            }
- 
 
             .side-navbar {
                 position: fixed;
@@ -509,20 +500,6 @@
     transform: translateX(3px);
 }
 
-
-
-@if (Context.Session.GetString("IsAdmin") == "true")
-{
-    <a asp-controller="Messages"
-       asp-action="Send"
-       class="send-message-btn">
-
-        <i class="fa-solid fa-paper-plane"></i>
-        Send Message
-
-    </a>
-}
-
 .cart-icon-link { position: relative; color: #C6A15B;
     font-size: 30px; text-decoration: none; display: inline-flex; 
     justify-content: center; align-items: center; transition: .35s ease; }
@@ -568,7 +545,6 @@
                                 </a>
                             </li>
                         }
-
 
                         <li class="nav-item luxury-item">
                             <a class="nav-link luxe-link"
@@ -777,6 +753,7 @@
             </div>
 
         </footer>
+        </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
