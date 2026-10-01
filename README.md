@@ -21,3 +21,7 @@ https://youtu.be/_vFwJ9Ty8H4?si=Z4_mbU1yukadwSkL
 
 Part 2: Admin Side
 https://youtu.be/6HXyPPst2mU?si=8SDqGuynzovsP4Vp
+
+**Project Screenshots ✅**
+
+** https://www.linkedin.com/posts/hiba-hroob-6312533ab_salonmanagementsystem-webdevelopment-softwaredevelopment-activity-7507449827690119168-Q2Qx?utm_source=share&utm_medium=member_desktop&rcm=ACoAAGQ89MUBQd0BvG1Pdk5l7DYOoDOMwXM-P0E**
