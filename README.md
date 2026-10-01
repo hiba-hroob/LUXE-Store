@@ -14,4 +14,5 @@ July 2026 – Present
 
 ### Project Demo
 https://github.com/hiba-hroob/LUXE-Store/releases/download/v1.5.0/LUXE-Store-v1.4.0.zip
-
+## 🎥 Project Demo
+https://youtu.be/_vFwJ9Ty8H4?si=Z4_mbU1yukadwSkL
