@@ -402,3 +402,173 @@
    
 
 </div>
+<style>
+    /* =========================================
+       LUXE ACCOUNT — PAGE SIZE & SPACING
+       ========================================= */
+
+    /* Desktop */
+    @@media (min-width: 1200px) {
+
+        .luxe-account {
+            min-height: 100vh;
+            padding: 70px 50px 80px;
+        }
+
+        .account-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .profile-card {
+            max-width: 900px;
+            margin: 0 auto 45px;
+        }
+
+        .account-grid {
+            gap: 25px;
+        }
+
+    }
+
+
+    /* Laptop */
+    @@media (min-width: 992px) and (max-width: 1199px) {
+
+        .luxe-account {
+            min-height: 100vh;
+            padding: 55px 35px 70px;
+        }
+
+        .account-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .profile-card {
+            max-width: 850px;
+            margin-bottom: 40px;
+        }
+
+        .account-grid {
+            gap: 20px;
+        }
+
+    }
+
+
+    /* iPad / Tablet */
+    @@media (min-width: 768px) and (max-width: 991px) {
+
+        .luxe-account {
+            min-height: 100vh;
+            padding: 45px 28px 60px;
+        }
+
+        .account-wrapper {
+            width: 100%;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .profile-card {
+            width: 100%;
+            margin-bottom: 35px;
+            padding: 30px;
+        }
+
+        .account-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .account-box {
+            height: 215px;
+        }
+
+    }
+
+
+    /* Mobile */
+    @@media (max-width: 767px) {
+
+        .luxe-account {
+            min-height: 100vh;
+            padding: 30px 15px 45px;
+        }
+
+        .account-wrapper {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .profile-card {
+            width: 100%;
+            margin: 0 auto 30px;
+            padding: 28px 20px;
+        }
+
+        .account-section-title {
+            margin-bottom: 22px;
+        }
+
+        .account-grid {
+            width: 100%;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .account-box {
+            width: 100%;
+            height: 195px;
+        }
+
+    }
+
+
+    /* Small Mobile */
+    @@media (max-width: 480px) {
+
+        .luxe-account {
+            padding: 22px 12px 35px;
+        }
+
+        .profile-card {
+            margin-bottom: 25px;
+            padding: 24px 16px;
+        }
+
+        .account-section-title {
+            margin-bottom: 18px;
+        }
+
+        .account-grid {
+            gap: 14px;
+        }
+
+        .account-box {
+            height: 180px;
+        }
+
+    }
+
+
+    /* Very Small Mobile */
+    @@media (max-width: 360px) {
+
+        .luxe-account {
+            padding: 18px 9px 30px;
+        }
+
+        .profile-card {
+            padding: 21px 13px;
+            margin-bottom: 22px;
+        }
+
+        .account-box {
+            height: 170px;
+        }
+
+    }
+</style>
