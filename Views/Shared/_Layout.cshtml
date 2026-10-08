@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 
+
 <style>
 
     /* =====================================================
@@ -696,7 +697,6 @@
 
     /* =====================================================
        MOBILE MENU BUTTON
-       Hidden on desktop/tablet
        ===================================================== */
 
     .mobile-menu-toggle {
@@ -709,7 +709,7 @@
        768px - 1199px
        ===================================================== */
 
-    @@media (max-width: 1199px) {
+    @@media (min-width: 768px) and (max-width: 1199px) {
 
         .side-navbar {
             position: relative;
@@ -720,24 +720,22 @@
             width: 100%;
             height: auto;
 
-            min-height: 72px;
+            min-height: 78px;
 
             flex-direction: row;
 
             align-items: center;
 
-            justify-content: space-between;
-
-            padding: 12px 25px;
+            padding: 14px 28px;
 
             box-sizing: border-box;
+
+            gap: 25px;
 
             box-shadow:
                 0 5px 20px rgba(0,0,0,.25);
         }
 
-
-        /* Logo */
 
         .side-logo {
             writing-mode: horizontal-tb;
@@ -746,15 +744,13 @@
 
             margin: 0;
 
-            font-size: 27px;
+            font-size: 28px;
 
             letter-spacing: 4px;
 
             flex-shrink: 0;
         }
 
-
-        /* Navigation */
 
         .side-navbar > .navbar-nav {
             display: flex;
@@ -765,13 +761,15 @@
 
             justify-content: center;
 
-            gap: 7px;
+            gap: 8px;
 
             margin: 0;
 
             padding: 0;
 
             flex: 1;
+
+            min-width: 0;
         }
 
 
@@ -779,11 +777,13 @@
             margin: 0;
 
             border-radius: 10px;
+
+            flex-shrink: 1;
         }
 
 
         .side-navbar .luxe-link {
-            padding: 10px 11px !important;
+            padding: 10px 10px !important;
 
             font-size: 10px;
 
@@ -792,8 +792,6 @@
             white-space: nowrap;
         }
 
-
-        /* Icons */
 
         .side-extra {
             position: static;
@@ -806,7 +804,7 @@
 
             align-items: center;
 
-            gap: 16px;
+            gap: 15px;
 
             margin: 0;
 
@@ -824,16 +822,12 @@
         }
 
 
-        /* Page */
-
         .page-area {
             margin-left: 0;
 
             width: 100%;
         }
 
-
-        /* Hamburger remains hidden */
 
         .mobile-menu-toggle {
             display: none;
@@ -851,11 +845,13 @@
         .side-navbar {
             position: relative;
 
+            left: auto;
+            top: auto;
+
             width: 100%;
+            height: auto;
 
             min-height: 64px;
-
-            height: auto;
 
             padding: 10px 15px;
 
@@ -870,10 +866,15 @@
             gap: 10px;
 
             box-sizing: border-box;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,.25);
         }
 
 
-        /* Logo */
+        /* =================================================
+           LOGO
+           ================================================= */
 
         .side-logo {
             writing-mode: horizontal-tb;
@@ -992,8 +993,6 @@
         }
 
 
-        /* Menu opened */
-
         .side-navbar.menu-open > .navbar-nav {
             opacity: 1;
 
@@ -1004,8 +1003,6 @@
             transform: translateY(0);
         }
 
-
-        /* Menu item */
 
         .side-navbar .luxury-item {
             width: 100%;
@@ -1038,7 +1035,19 @@
         }
 
 
-        /* Hamburger when open */
+        .side-navbar .navbar-nav .text-center {
+            margin-top: 0 !important;
+        }
+
+
+        .side-navbar .navbar-nav .cart-icon-link {
+            min-height: 44px;
+
+            margin: 0;
+
+            font-size: 26px;
+        }
+
 
         .side-navbar.menu-open .mobile-menu-toggle {
             background: #C6A15B;
@@ -1049,7 +1058,9 @@
         }
 
 
-        /* Icons */
+        /* =================================================
+           ICONS
+           ================================================= */
 
         .side-extra {
             position: static;
@@ -1080,7 +1091,9 @@
         }
 
 
-        /* Page */
+        /* =================================================
+           PAGE
+           ================================================= */
 
         .page-area {
             margin-left: 0;
@@ -1097,7 +1110,7 @@
 
     /* =====================================================
        SMALL MOBILE
-       481px - 480px
+       0px - 480px
        ===================================================== */
 
     @@media (max-width: 480px) {
@@ -1237,253 +1250,407 @@
 </style>
 
 
-
 </head>
+
+
+
 <body>
 
-    <div class="page-area">
-        <main role="main">
-            @RenderBody()
-        </main>
-    </div>
-    <div class="content-wrapper">
-        <header>
-            <nav class="side-navbar">
+    <!-- =====================================================
+         NAVBAR
+         ===================================================== -->
 
-                <div class="side-logo">
-                    LUXE
-                </div>
+    <header>
+        <nav class="side-navbar">
 
-       
-
-                <ul class="navbar-nav">
+            <div class="side-logo">
+                LUXE
+            </div>
 
 
-                    @if (Context.Session.GetInt32("UserId") != null)
+            <!-- MOBILE MENU BUTTON -->
+
+            <button class="mobile-menu-toggle"
+                    type="button"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <!-- =================================================
+                 NAVIGATION LINKS
+                 ================================================= -->
+
+            <ul class="navbar-nav">
+
+                @if (Context.Session.GetInt32("UserId") != null)
+                {
+
+                    @if (Context.Session.GetString("IsAdmin") == "true")
                     {
-
-                        @if (Context.Session.GetString("IsAdmin") == "true")
-                        {
-                            <li class="nav-item luxury-item">
-                                <a class="nav-link luxe-link"
-                                   asp-controller="AdminProducts"
-                                   asp-action="Create">
-                                    ADMIN
-                                </a>
-                            </li>
-                        }
-
-                        <li class="nav-item luxury-item">
-                            <a class="nav-link luxe-link"
-                               asp-controller="Products"
-                               asp-action="Index">
-                                PRODUCTS
-                            </a>
-                        </li>
-
-
-                        <li class="nav-item luxury-item">
-                            <a class="nav-link luxe-link"
-                               asp-controller="Orders"
-                               asp-action="MyOrders">
-                                ORDERS
-                            </a>
-                        </li>
-
-
-                        <li class="nav-item luxury-item">
-                            <a class="nav-link luxe-link"
-                               asp-controller="Account"
-                               asp-action="Profile">
-                                ACCOUNT
-                            </a>
-                        </li>
-
                         <li class="nav-item luxury-item">
 
                             <a class="nav-link luxe-link"
-                               asp-controller="Account"
-                               asp-action="Logout">
+                               asp-controller="AdminProducts"
+                               asp-action="Create">
 
-                                LOGOUT
+                                ADMIN
 
                             </a>
 
                         </li>
                     }
-                    else
-                    {
-
-                        <li class="nav-item luxury-item">
-                            <a class="nav-link luxe-link"
-                               asp-controller="Account"
-                               asp-action="SignIn">
-                                LOGIN
-                            </a>
-                        </li>
 
 
-                        <li class="nav-item text-center mt-3">
-                            <a asp-controller="Account" asp-action="SignIn" class="cart-icon-link"> 
-                            <i class="fas fa-shopping-cart"></i> <span class="cart-number"> 0 </span> </a>
-                        </li>
+                    <li class="nav-item luxury-item">
 
-                    }
+                        <a class="nav-link luxe-link"
+                           asp-controller="Products"
+                           asp-action="Index">
 
-
-                </ul>
-
-           
-                <div class="side-extra">
-
-                    @if (Context.Session.GetInt32("UserId") != null)
-                    {
-                        var userId = Context.Session.GetInt32("UserId");
-
-                        var db = Context.RequestServices
-                            .GetRequiredService<Webproject.Data.ApplicationDbContext>();
-
-                        var unreadNotifications = db.Notifications
-                            .Count(n => n.UserId == userId.Value && !n.IsRead);
-
-
-                        var isAdmin = Context.Session.GetString("IsAdmin") == "true";
-
-                        int unreadMessages;
-
-                        if (isAdmin)
-                        {
-                           
-                            unreadMessages = db.Messages
-                                .Count(m =>
-                                    !m.IsRead &&
-                                    !m.IsFromAdmin);
-                        }
-                        else
-                        {
-                       
-                            unreadMessages = db.Messages
-                                .Count(m =>
-                                    m.UserId == userId.Value &&
-                                    !m.IsRead &&
-                                    m.IsFromAdmin);
-                        }
-
-
-                        <a asp-controller="Notifications"
-                           asp-action="Index"
-                           class="notification-bell">
-
-                            <i class="fa-solid fa-bell"></i>
-
-                            <span class="notification-number">
-                                @unreadNotifications
-                            </span>
+                            PRODUCTS
 
                         </a>
 
+                    </li>
 
-                        <a asp-controller="Messages"
-                           asp-action="Index"
-                           class="message-icon-link">
 
-                            <i class="fa-solid fa-envelope"></i>
+                    <li class="nav-item luxury-item">
 
-                            <span class="message-number">
-                                @unreadMessages
-                            </span>
+                        <a class="nav-link luxe-link"
+                           asp-controller="Orders"
+                           asp-action="MyOrders">
+
+                            ORDERS
 
                         </a>
-                    }
-                    else
-                    {
+
+                    </li>
+
+
+                    <li class="nav-item luxury-item">
+
+                        <a class="nav-link luxe-link"
+                           asp-controller="Account"
+                           asp-action="Profile">
+
+                            ACCOUNT
+
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item luxury-item">
+
+                        <a class="nav-link luxe-link"
+                           asp-controller="Account"
+                           asp-action="Logout">
+
+                            LOGOUT
+
+                        </a>
+
+                    </li>
+
+                }
+                else
+                {
+
+                    <li class="nav-item luxury-item">
+
+                        <a class="nav-link luxe-link"
+                           asp-controller="Account"
+                           asp-action="SignIn">
+
+                            LOGIN
+
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item text-center mt-3">
+
                         <a asp-controller="Account"
                            asp-action="SignIn"
-                           class="notification-bell">
+                           class="cart-icon-link">
 
-                            <i class="fa-solid fa-bell"></i>
+                            <i class="fas fa-shopping-cart"></i>
 
-                            <span class="notification-number">
+                            <span class="cart-number">
                                 0
                             </span>
 
                         </a>
 
+                    </li>
 
-                        <a asp-controller="Account"
-                           asp-action="SignIn"
-                           class="message-icon-link">
+                }
 
-                            <i class="fa-solid fa-envelope"></i>
+            </ul>
 
-                            <span class="message-number">
-                                0
-                            </span>
 
-                        </a>
+            <!-- =================================================
+                 NOTIFICATIONS / MESSAGES
+                 ================================================= -->
+
+            <div class="side-extra">
+
+                @if (Context.Session.GetInt32("UserId") != null)
+                {
+                    var userId = Context.Session.GetInt32("UserId");
+
+                    var db = Context.RequestServices
+                        .GetRequiredService<Webproject.Data.ApplicationDbContext>();
+
+                    var unreadNotifications = db.Notifications
+                        .Count(n =>
+                            n.UserId == userId.Value &&
+                            !n.IsRead);
+
+
+                    var isAdmin =
+                        Context.Session.GetString("IsAdmin") == "true";
+
+
+                    int unreadMessages;
+
+
+                    if (isAdmin)
+                    {
+                        unreadMessages = db.Messages
+                            .Count(m =>
+                                !m.IsRead &&
+                                !m.IsFromAdmin);
+                    }
+                    else
+                    {
+                        unreadMessages = db.Messages
+                            .Count(m =>
+                                m.UserId == userId.Value &&
+                                !m.IsRead &&
+                                m.IsFromAdmin);
                     }
 
-                </div>
-        
 
-            </nav>
-        </header>
+                    <a asp-controller="Notifications"
+                       asp-action="Index"
+                       class="notification-bell">
 
-        <footer class="luxe-footer">
+                        <i class="fa-solid fa-bell"></i>
 
-            <div class="footer-top">
+                        <span class="notification-number">
+                            @unreadNotifications
+                        </span>
 
-                <div class="footer-logo">
+                    </a>
 
-                    <h2><i class="fa-solid fa-gem"></i>LUXE</h2>
 
-                    <span>Luxury Accessories</span>
+                    <a asp-controller="Messages"
+                       asp-action="Index"
+                       class="message-icon-link">
 
-                    <p class="footer-slogan">
-                        Timeless Luxury • Crafted To Shine
-                    </p>
+                        <i class="fa-solid fa-envelope"></i>
 
-                </div>
+                        <span class="message-number">
+                            @unreadMessages
+                        </span>
 
-                <div class="footer-links">
+                    </a>
+                }
+                else
+                {
 
-                    <a href="#">Home</a>
+                    <a asp-controller="Account"
+                       asp-action="SignIn"
+                       class="notification-bell">
 
-                    <a href="#">Shop</a>
+                        <i class="fa-solid fa-bell"></i>
 
-                    <a href="#">Collections</a>
+                        <span class="notification-number">
+                            0
+                        </span>
 
-                    <a href="#">Contact</a>
+                    </a>
 
-                </div>
 
-                <div class="social-icons">
+                    <a asp-controller="Account"
+                       asp-action="SignIn"
+                       class="message-icon-link">
 
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                        <i class="fa-solid fa-envelope"></i>
 
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <span class="message-number">
+                            0
+                        </span>
 
-                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </a>
 
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-
-                </div>
+                }
 
             </div>
 
-            <div class="footer-bottom">
+        </nav>
+    </header>
 
-                <p>
-                    © 2026 LUXE • Crafted with Elegance & Luxury
+
+
+    <!-- =====================================================
+         MAIN PAGE CONTENT
+         ===================================================== -->
+
+    <div class="page-area">
+
+        <main role="main">
+
+            @RenderBody()
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="luxe-footer">
+
+        <div class="footer-top">
+
+            <div class="footer-logo">
+
+                <h2>
+                    <i class="fa-solid fa-gem"></i>LUXE
+                </h2>
+
+                <span>
+                    Luxury Accessories
+                </span>
+
+                <p class="footer-slogan">
+                    Timeless Luxury • Crafted To Shine
                 </p>
 
             </div>
 
-        </footer>
+
+            <div class="footer-links">
+
+                <a href="#">
+                    Home
+                </a>
+
+                <a href="#">
+                    Shop
+                </a>
+
+                <a href="#">
+                    Collections
+                </a>
+
+                <a href="#">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <div class="social-icons">
+
+                <a href="#">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fab fa-pinterest-p"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+
+            </div>
+
         </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 LUXE • Crafted with Elegance & Luxury
+            </p>
+
+        </div>
+
+    </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const navbar =
+            document.querySelector(".side-navbar");
+
+        const menuButton =
+            document.querySelector(".mobile-menu-toggle");
+
+
+        if (!navbar || !menuButton) {
+            return;
+        }
+
+
+        menuButton.addEventListener("click", function () {
+
+            const isOpen =
+                navbar.classList.toggle("menu-open");
+
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                isOpen.toString()
+            );
+
+
+            const icon =
+                menuButton.querySelector("i");
+
+
+            if (isOpen) {
+
+                icon.classList.remove("fa-bars");
+
+                icon.classList.add("fa-xmark");
+
+            }
+            else {
+
+                icon.classList.remove("fa-xmark");
+
+                icon.classList.add("fa-bars");
+
+            }
+
+        });
+
+    });
+
+</script>
+
+
 @await RenderSectionAsync("Scripts", required: false)
 </body>                                
 </html>
