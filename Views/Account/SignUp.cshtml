@@ -6,218 +6,626 @@
 
 <style>
 
+/* =========================================
+   LUXE SIGN UP PAGE
+   ========================================= */
+
+.login-page {
+    min-height: 85vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 70px;
+
+    padding: 60px 50px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(8, 8, 8, .96),
+            rgba(8, 8, 8, .78)
+        ),
+        url('/imgs/mmain.jpg');
+
+    background-size: cover;
+    background-position: center;
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* =========================================
+   SIGN UP CARD
+   ========================================= */
+
+.login-container {
+    width: 420px;
+
+    padding: 42px 45px;
+
+    background: rgba(255, 255, 255, .08);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(198, 161, 91, .3);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, .55),
+        inset 0 0 30px rgba(255, 255, 255, .025);
+
+    position: relative;
+    z-index: 2;
+
+    margin: 0 !important;
+
+    transform: none !important;
+}
+
+
+/* Gold border glow */
+
+.login-container::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -1px;
+
+    border-radius: 24px;
+
+    padding: 1px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(198,161,91,.55),
+        transparent 35%,
+        transparent 65%,
+        rgba(198,161,91,.25)
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   TITLE
+   ========================================= */
+
+.login-title {
+    text-align: center;
+
+    color: white;
+
+    font-size: 38px;
+
+    font-weight: 700;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   FORM
+   ========================================= */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: #eee;
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================================
+   INPUT
+   ========================================= */
+
+.form-control {
+    width: 100%;
+
+    padding: 13px 18px;
+
+    background: rgba(255, 255, 255, .07);
+
+    border: 1px solid rgba(198, 161, 91, .28);
+
+    border-radius: 12px;
+
+    color: white;
+
+    outline: none;
+
+    transition:
+        border-color .35s ease,
+        box-shadow .35s ease,
+        transform .35s ease,
+        background .35s ease;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, .45);
+}
+
+.form-control:focus {
+    border-color: #C6A15B;
+
+    box-shadow:
+        0 0 0 3px rgba(198, 161, 91, .08),
+        0 0 25px rgba(198, 161, 91, .18);
+
+    background: rgba(255, 255, 255, .1);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   VALIDATION
+   ========================================= */
+
+.text-danger {
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 11px;
+
+    color: #ff7777 !important;
+}
+
+
+/* =========================================
+   CREATE ACCOUNT BUTTON
+   ========================================= */
+
+.login-button {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 8px;
+
+    background: #0F2E26;
+
+    color: #C6A15B;
+
+    border: 1px solid #C6A15B;
+
+    border-radius: 50px;
+
+    font-weight: 600;
+
+    font-size: 12px;
+
+    letter-spacing: 2.5px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition:
+        transform .35s ease,
+        background .35s ease,
+        color .35s ease,
+        box-shadow .35s ease;
+}
+
+.login-button::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.7),
+        transparent
+    );
+
+    transition: .6s ease;
+}
+
+.login-button:hover::before {
+    left: 120%;
+}
+
+.login-button:hover {
+    background: #C6A15B;
+
+    color: #111;
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(198,161,91,.3);
+}
+
+
+/* =========================================
+   SIGN IN LINK
+   ========================================= */
+
+.register-link {
+    text-align: center;
+
+    margin-top: 22px;
+
+    color: rgba(255,255,255,.7);
+
+    font-size: 13px;
+}
+
+.register-link a {
+    color: #C6A15B;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    margin-left: 4px;
+
+    transition: color .3s ease;
+}
+
+.register-link a:hover {
+    color: white;
+}
+
+
+/* =========================================
+   SUCCESS MESSAGE
+   ========================================= */
+
+.login-success {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    color: #9ee6ad;
+
+    background: rgba(40, 167, 69, .1);
+
+    border: 1px solid rgba(40, 167, 69, .35);
+
+    border-radius: 12px;
+
+    padding: 11px 14px;
+
+    margin-bottom: 18px;
+
+    text-align: center;
+
+    font-size: 12px;
+}
+
+.login-success i {
+    font-size: 14px;
+}
+
+
+/* =========================================
+   ERROR MESSAGE
+   ========================================= */
+
+.login-error {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    color: #ff9999;
+
+    background: rgba(255, 70, 70, .1);
+
+    border: 1px solid rgba(255, 70, 70, .4);
+
+    border-radius: 12px;
+
+    padding: 11px 14px;
+
+    margin-bottom: 18px;
+
+    text-align: center;
+
+    font-size: 12px;
+}
+
+.login-error i {
+    font-size: 14px;
+}
+
+
+/* =========================================
+   LUXE BRANDING SECTION
+   ========================================= */
+
+.luxe-banner {
+    width: 550px;
+
+    max-width: 100%;
+
+    padding: 60px 30px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,.025);
+
+    border: 1px solid rgba(198,161,91,.12);
+
+    border-radius: 30px;
+
+    box-shadow:
+        inset 0 0 60px rgba(198,161,91,.025);
+
+    position: relative;
+
+    z-index: 1;
+}
+
+.luxe-banner > span {
+    display: inline-block;
+
+    padding: 8px 20px;
+
+    background: rgba(198,161,91,.12);
+
+    color: #C6A15B;
+
+    backdrop-filter: blur(10px);
+
+    border-radius: 50px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    border: 1px solid rgba(198,161,91,.3);
+
+    margin-bottom: 20px;
+}
+
+.luxe-banner h1 {
+    font-size: 48px;
+
+    font-weight: 700;
+
+    line-height: 1.15;
+
+    margin: 10px 0 20px;
+
+    color: white;
+
+    letter-spacing: 1px;
+}
+
+.luxe-banner p {
+    color: #aaa;
+
+    max-width: 500px;
+
+    margin: auto;
+
+    line-height: 1.8;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   EXPLORE BUTTON
+   ========================================= */
+
+.luxe-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 30px;
+
+    padding: 13px 30px;
+
+    border-radius: 50px;
+
+    background: #0F2E26;
+
+    color: #C6A15B;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    text-decoration: none;
+
+    border: 1px solid #C6A15B;
+
+    transition: .35s ease;
+}
+
+.luxe-btn:hover {
+    background: #C6A15B;
+
+    color: #111;
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(198,161,91,.3);
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@@media (max-width: 1000px) {
+
     .login-page {
-        min-height: 85vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient( rgba(0,0,0,.65), rgba(0,0,0,.80) ), url('/imgs/mmain.jpg');
-        background-size: cover;
-        background-position: center;
+        gap: 35px;
+
+        padding: 50px 25px;
     }
 
- 
     .login-container {
-        width: 420px;
-        padding: 45px;
-        background: rgba(255,255,255,.12);
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(255,255,255,.25);
-        box-shadow: 0 20px 50px rgba(0,0,0,.5);
-        border-radius: 15px;
-        position: relative;
-        display: block;
-        margin-top: 60px !important;
-        margin-right: auto !important;
-        margin-bottom: 60px !important;
-        margin-left: 60px !important;
-        transform: none !important;
+        width: 380px;
+
+        padding: 38px;
+    }
+
+    .luxe-banner {
+        width: 480px;
+    }
+
+    .luxe-banner h1 {
+        font-size: 40px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@@media (max-width: 800px) {
+
+    .login-page {
+        min-height: auto;
+
+        flex-direction: column;
+
+        gap: 30px;
+
+        padding: 45px 18px 60px;
+    }
+
+    .login-container {
+        width: 100%;
+
+        max-width: 420px;
+
+        padding: 35px 25px;
     }
 
     .login-title {
-        text-align: center;
-        color: white;
-        font-size: 40px;
-        letter-spacing: 5px;
-        margin-bottom: 35px;
+        font-size: 32px;
+
+        margin-bottom: 28px;
     }
 
-    .form-group {
-        margin-bottom: 25px;
-    }
-
-        .form-group label {
-            color: white;
-            display: block;
-            margin-bottom: 8px;
-            letter-spacing: 2px;
-        }
-
-    .form-control {
+    .luxe-banner {
         width: 100%;
-        padding: 14px 18px;
-        background: rgba(255,255,255,.08);
-        border: 1px solid rgba(198,161,91,.3);
-        border-radius: 12px;
-        color: white;
-        transition: all .35s ease;
-        backdrop-filter: blur(8px);
+
+        max-width: 420px;
+
+        padding: 40px 20px;
     }
 
-        .form-control::placeholder {
-            color: rgba(255,255,255,.55);
-        }
+    .luxe-banner h1 {
+        font-size: 32px;
+    }
 
-        .form-control:focus {
-            outline: none;
-            border-color: #C6A15B;
-            box-shadow: 0 0 20px rgba(198,161,91,.35);
-            transform: translateY(-3px);
-            background: rgba(255,255,255,.12);
-            transition: .5s;
-        }
+    .luxe-banner p {
+        font-size: 13px;
+    }
+}
 
-    .login-button {
-        width: 100%;
-        padding: 14px;
-        margin-top: 20px;
-        background: #111;
-        color: #C6A15B;
-        border: 1px solid #C6A15B;
-        font-weight: bold;
-        letter-spacing: 3px;
-        position: relative;
-        overflow: hidden;
-        transition: .4s;
+
+/* =========================================
+   SMALL MOBILE
+   ========================================= */
+
+@@media (max-width: 480px) {
+
+    .login-page {
+        padding: 30px 12px 45px;
+
+        gap: 22px;
+    }
+
+    .login-container {
+        padding: 30px 20px;
+
         border-radius: 20px;
     }
 
-        .login-button::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient( 120deg, transparent, rgba(255,255,255,.8), transparent );
-            transition: .5s;
-        }
+    .login-title {
+        font-size: 27px;
 
-        .login-button:hover::before {
-            left: 100%;
-        }
-
-        .login-button:hover {
-            background: #111;
-            color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(198,161,91,.5);
-            border: 1px solid #C6A15B;
-        }
-
-    .register-link {
-        text-align: center;
-        margin-top: 25px;
-        color: white;
+        letter-spacing: 4px;
     }
 
-        .register-link a {
-            color: #C6A15B;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    .form-control {
+        padding: 12px 15px;
+    }
 
-        
+    .login-button {
+        padding: 13px;
+
+        font-size: 11px;
+    }
+
     .luxe-banner {
-        color: #ddd;
-        background-position: center;
-        border-radius: 30px;
-        padding: 100px 60px;
-        margin: 40px auto;
-        text-align: center;
+        padding: 32px 15px;
+
+        border-radius: 22px;
     }
 
-        .luxe-banner h1 {
-            font-size: 58px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #ddd;
-        }
+    .luxe-banner h1 {
+        font-size: 28px;
+    }
 
-        .luxe-banner p {
-            color: #ddd;
-            max-width: 650px;
-            margin: auto;
-            line-height: 1.8;
-        }
+    .luxe-banner p {
+        font-size: 12px;
 
-     
+        line-height: 1.7;
+    }
+
     .luxe-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 35px;
-        padding: 16px 45px;
-        border-radius: 50px;
-        background: rgba(198,161,91,.15);
-        color: #C6A15B;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-decoration: none;
-        border: 1px solid #C6A15B;
-        position: relative;
-        overflow: hidden;
-        transition: .5s ease;
+        padding: 11px 22px;
+
+        font-size: 12px;
     }
+}
 
-
-      
-
-        .luxe-btn::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: #C6A15B;
-            transform: translateY(100%);
-            transition: .5s ease;
-            z-index: -1;
-        }
-
-
-     
-
-        .luxe-btn:hover::before {
-            transform: translateY(0);
-        }
-
-
-        .luxe-btn:hover {
-            color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(198,161,91,.35);
-        }
-
-    .login-success {
-        color: #8fd19e;
-        background: rgba(40, 167, 69, .12);
-        border: 1px solid rgba(40, 167, 69, .4);
-        border-radius: 12px;
-        padding: 12px 15px;
-        margin-bottom: 20px;
-        text-align: center;
-        font-size: 13px;
-    }
-
-    .login-error {
-        color: #ff6b6b;
-        background: rgba(255, 70, 70, .12);
-        border: 1px solid rgba(255, 70, 70, .4);
-        border-radius: 12px;
-        padding: 12px 15px;
-        margin-bottom: 20px;
-        text-align: center;
-        font-size: 13px;
-    }
 </style>
 
 <div class="login-page">

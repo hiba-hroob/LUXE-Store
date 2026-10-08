@@ -12,6 +12,7 @@
 
     .luxe-account {
         min-height: 100vh;
+<<<<<<< HEAD
         box-sizing: border-box;
         padding: 70px 35px 80px;
 
@@ -24,6 +25,13 @@
                 transparent 40%),
             #F7F1E8;
 
+=======
+        padding: 70px 35px;
+        background:
+            radial-gradient(circle at top left, rgba(198,161,91,.12), transparent 35%),
+            radial-gradient(circle at bottom right, rgba(15,46,38,.18), transparent 40%),
+            #F7F1E8;
+>>>>>>> ffe3d64 (Update account, wallet, and product views)
         color: #111;
     }
 
@@ -35,9 +43,15 @@
     }
 
 
+<<<<<<< HEAD
     /* =========================================================
        PROFILE CARD
        ========================================================= */
+=======
+    /* ==============================
+       PROFILE CARD
+    ============================== */
+>>>>>>> ffe3d64 (Update account, wallet, and product views)
 
     .profile-card {
         position: relative;
@@ -73,9 +87,28 @@
             box-shadow .4s ease;
     }
 
+<<<<<<< HEAD
 
     .profile-card::before {
         content: "";
+=======
+    .profile-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 4px;
+        background: #C6A15B;
+        box-shadow: 0 0 18px rgba(198,161,91,.7);
+    }
+
+    .profile-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 28px 65px rgba(15,46,38,.14);
+    }
+>>>>>>> ffe3d64 (Update account, wallet, and product views)
 
         position: absolute;
 
@@ -208,6 +241,13 @@
         letter-spacing: 2px;
     }
 
+<<<<<<< HEAD
+=======
+    .member-badge::before {
+        content: "✦";
+        color: #C6A15B;
+    }
+>>>>>>> ffe3d64 (Update account, wallet, and product views)
 
     .member-badge::before {
         content: "✦";
@@ -219,17 +259,48 @@
        SECTION TITLE
        ========================================================= */
 
+    /* ==============================
+       SECTION TITLE
+    ============================== */
+
     .account-section-title {
         text-align: center;
 
         margin-bottom: 28px;
     }
 
+<<<<<<< HEAD
 
     .account-section-title small {
         display: block;
 
         color: #C6A15B;
+=======
+    .account-section-title small {
+        color: #C6A15B;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+    }
+
+    .account-section-title h1 {
+        margin: 8px 0 0;
+        color: #0F2E26;
+        font-size: 28px;
+        letter-spacing: 3px;
+    }
+
+    .account-section-title h1::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 3px;
+        margin: 13px auto 0;
+        background: #C6A15B;
+        border-radius: 10px;
+    }
+>>>>>>> ffe3d64 (Update account, wallet, and product views)
 
         font-size: 10px;
         font-weight: 700;
@@ -273,21 +344,35 @@
        ACCOUNT GRID
        ========================================================= */
 
+    /* ==============================
+       ACCOUNT GRID
+    ============================== */
+
     .account-grid {
         display: grid;
+<<<<<<< HEAD
 
         grid-template-columns:
             repeat(3, minmax(0, 1fr));
 
+=======
+        grid-template-columns: repeat(3, 1fr);
+>>>>>>> ffe3d64 (Update account, wallet, and product views)
         gap: 25px;
 
         width: 100%;
     }
 
 
+<<<<<<< HEAD
     /* =========================================================
        ACCOUNT CARDS
        ========================================================= */
+=======
+    /* ==============================
+       ACCOUNT BOX
+    ============================== */
+>>>>>>> ffe3d64 (Update account, wallet, and product views)
 
     .account-box {
         position: relative;
@@ -323,13 +408,17 @@
         text-decoration: none;
 
         overflow: hidden;
+<<<<<<< HEAD
 
+=======
+>>>>>>> ffe3d64 (Update account, wallet, and product views)
         transition:
             transform .4s ease,
             box-shadow .4s ease,
             border-color .4s ease;
     }
 
+<<<<<<< HEAD
 
     .account-box::before {
         content: "";
@@ -375,6 +464,41 @@
     /* =========================================================
        GOLD LINE
        ========================================================= */
+=======
+    .account-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -120%;
+        width: 80%;
+        height: 100%;
+        background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,.7),
+            transparent
+        );
+        transform: skewX(-25deg);
+        transition: .7s ease;
+    }
+
+    .account-box:hover::before {
+        left: 140%;
+    }
+
+    .account-box:hover {
+        transform: translateY(-9px);
+        border-color: #C6A15B;
+        box-shadow:
+            0 25px 55px rgba(15,46,38,.14),
+            0 0 25px rgba(198,161,91,.08);
+    }
+
+
+    /* ==============================
+       GOLD LINE
+    ============================== */
+>>>>>>> ffe3d64 (Update account, wallet, and product views)
 
     .gold-line {
         position: absolute;
@@ -394,9 +518,15 @@
     }
 
 
+<<<<<<< HEAD
     /* =========================================================
        ICON
        ========================================================= */
+=======
+    /* ==============================
+       ACCOUNT ICON
+    ============================== */
+>>>>>>> ffe3d64 (Update account, wallet, and product views)
 
     .account-box i {
         width: 72px;
@@ -437,10 +567,13 @@
     }
 
 
+<<<<<<< HEAD
     /* =========================================================
        CARD TEXT
        ========================================================= */
 
+=======
+>>>>>>> ffe3d64 (Update account, wallet, and product views)
     .account-box h4 {
         margin: 0 0 9px;
 
@@ -473,6 +606,7 @@
     }
 
 
+<<<<<<< HEAD
     /* =========================================================
        LARGE DESKTOP
        ========================================================= */
@@ -489,9 +623,67 @@
 
         .profile-card {
             max-width: 900px;
+=======
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @@media (max-width: 700px) {
+
+        .luxe-account {
+            padding: 40px 18px 55px;
         }
 
+        .profile-card {
+            flex-direction: column;
+            text-align: center;
+            gap: 18px;
+            padding: 30px 20px;
+            margin-bottom: 38px;
+            border-radius: 24px;
+        }
+
+        .profile-avatar {
+            width: 88px;
+            height: 88px;
+            font-size: 32px;
+        }
+
+        .profile-info h2 {
+            font-size: 23px;
+            letter-spacing: 1.5px;
+>>>>>>> ffe3d64 (Update account, wallet, and product views)
+        }
+
+        .profile-info p {
+            font-size: 12px;
+            margin: 7px 0 14px;
+        }
+
+        .member-badge {
+            padding: 8px 14px;
+            font-size: 9px;
+            letter-spacing: 1.5px;
+        }
+
+
+        .account-section-title {
+            margin-bottom: 22px;
+        }
+
+        .account-section-title small {
+            font-size: 9px;
+            letter-spacing: 3px;
+        }
+
+        .account-section-title h1 {
+            font-size: 23px;
+            letter-spacing: 2px;
+        }
+
+
         .account-grid {
+<<<<<<< HEAD
             gap: 25px;
         }
     }
@@ -558,15 +750,50 @@
             grid-template-columns:
                 repeat(2, minmax(0, 1fr));
             gap: 20px;
+=======
+            grid-template-columns: 1fr;
+            gap: 16px;
+>>>>>>> ffe3d64 (Update account, wallet, and product views)
         }
 
+
         .account-box {
+<<<<<<< HEAD
             height: 215px;
             padding: 22px;
+=======
+            height: 185px;
+            padding: 20px;
+            border-radius: 22px;
+        }
+
+        .account-box i {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 14px;
+            border-radius: 18px;
+            font-size: 25px;
+        }
+
+        .account-box h4 {
+            font-size: 15px;
+            margin-bottom: 7px;
+            letter-spacing: 1.5px;
+        }
+
+        .account-box span {
+            font-size: 11px;
+        }
+
+        .gold-line {
+            width: 55px;
+            height: 3px;
+>>>>>>> ffe3d64 (Update account, wallet, and product views)
         }
     }
 
 
+<<<<<<< HEAD
     /* =========================================================
        MOBILE
        ========================================================= */
@@ -778,12 +1005,84 @@
         .account-box i,
         .account-box::before {
             transition: none !important;
+=======
+    /* =====================================================
+       SMALL MOBILE
+       ===================================================== */
+
+    @@media (max-width: 400px) {
+
+        .luxe-account {
+            padding: 30px 12px 45px;
+        }
+
+        .profile-card {
+            padding: 25px 16px;
+            margin-bottom: 32px;
+        }
+
+        .profile-avatar {
+            width: 78px;
+            height: 78px;
+            font-size: 28px;
+        }
+
+        .profile-info h2 {
+            font-size: 20px;
+        }
+
+        .profile-info p {
+            font-size: 11px;
+            margin-bottom: 12px;
+        }
+
+        .member-badge {
+            padding: 7px 12px;
+            font-size: 8px;
+        }
+
+
+        .account-section-title h1 {
+            font-size: 21px;
+            letter-spacing: 1.5px;
+        }
+
+
+        .account-grid {
+            gap: 13px;
+        }
+
+
+        .account-box {
+            height: 165px;
+            padding: 17px;
+            border-radius: 19px;
+        }
+
+        .account-box i {
+            width: 54px;
+            height: 54px;
+            margin-bottom: 11px;
+            font-size: 22px;
+            border-radius: 16px;
+        }
+
+        .account-box h4 {
+            font-size: 14px;
+        }
+
+        .account-box span {
+            font-size: 10px;
+>>>>>>> ffe3d64 (Update account, wallet, and product views)
         }
     }
 
 </style>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ffe3d64 (Update account, wallet, and product views)
 <div class="luxe-account">
 
     <div class="account-wrapper">
