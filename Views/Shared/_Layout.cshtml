@@ -510,6 +510,184 @@
         align-items: center; box-shadow: 0 0 12px rgba(217,4,41,.6);
     }
 
+
+
+/* =========================================
+   MOBILE / TABLET NAVBAR
+   ========================================= */
+
+@@media (max-width: 767px) {
+
+    /* Move sidebar to the top */
+    .side-navbar {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        height: auto;
+        min-height: 70px;
+
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 12px 15px;
+
+        box-shadow: 0 5px 20px rgba(0,0,0,.25);
+    }
+
+    /* LUXE logo becomes horizontal */
+    .side-logo {
+        writing-mode: horizontal-tb;
+        transform: none;
+
+        font-size: 24px;
+        letter-spacing: 4px;
+
+        margin: 0;
+        flex-shrink: 0;
+    }
+
+    /* Main navigation becomes horizontal */
+    .side-navbar > .navbar-nav {
+        display: flex;
+        flex-direction: row;
+
+        align-items: center;
+        justify-content: flex-end;
+
+        gap: 6px;
+
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Navigation items */
+    .side-navbar .luxury-item {
+        margin: 0;
+        border-radius: 10px;
+    }
+
+    .side-navbar .luxe-link {
+        padding: 9px 8px !important;
+
+        font-size: 10px;
+        letter-spacing: 1px;
+        white-space: nowrap;
+    }
+
+    /* Notifications + messages */
+    .side-extra {
+        position: static;
+
+        width: auto;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        gap: 14px;
+
+        padding: 0;
+        margin-left: 8px;
+
+        border-top: none;
+    }
+
+    .notification-bell,
+    .message-icon-link {
+        font-size: 20px;
+    }
+
+    /* Page no longer needs left space */
+    .page-area {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    /* Footer */
+    .luxe-footer {
+        margin-top: 35px;
+    }
+}
+
+
+/* =========================================
+   SMALL PHONES
+   ========================================= */
+
+@@media (max-width: 550px) {
+
+    .side-navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+
+        gap: 10px;
+
+        padding: 12px 10px;
+    }
+
+    .side-logo {
+        width: 100%;
+        text-align: center;
+
+        font-size: 25px;
+        margin-bottom: 3px;
+    }
+
+    .side-navbar > .navbar-nav {
+        width: 100%;
+
+        justify-content: center;
+        flex-wrap: wrap;
+
+        gap: 5px;
+    }
+
+    .side-navbar .luxe-link {
+        font-size: 9px;
+        padding: 8px 7px !important;
+    }
+
+    .side-extra {
+        width: 100%;
+        justify-content: center;
+
+        margin-left: 0;
+        margin-top: 4px;
+    }
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+   ========================================= */
+
+@@media (max-width: 380px) {
+
+    .side-navbar {
+        padding: 10px 8px;
+    }
+
+    .side-logo {
+        font-size: 22px;
+        letter-spacing: 3px;
+    }
+
+    .side-navbar .luxe-link {
+        font-size: 8px;
+        padding: 7px 6px !important;
+        letter-spacing: .7px;
+    }
+
+    .notification-bell,
+    .message-icon-link {
+        font-size: 18px;
+    }
+}
+
+
+
  </style>
 </head>
 <body>
