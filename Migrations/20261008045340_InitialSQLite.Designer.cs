@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Webproject.Data;
@@ -12,31 +11,25 @@ using Webproject.Data;
 namespace Webproject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260811134500_AddWalletTransactions")]
-    partial class AddWalletTransactions
+    [Migration("20261008045340_InitialSQLite")]
+    partial class InitialSQLite
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.25")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.25");
 
             modelBuilder.Entity("Webproject.Models.Favorite", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ProductId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -52,22 +45,23 @@ namespace Webproject.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsFromAdmin")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsRead")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -80,22 +74,20 @@ namespace Webproject.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("IsRead")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Message")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -108,18 +100,16 @@ namespace Webproject.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -132,18 +122,16 @@ namespace Webproject.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("OrderId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("ProductId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -158,30 +146,28 @@ namespace Webproject.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Brand")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Category")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -191,7 +177,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 1,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Rings",
                             Description = "Elegant golden ring",
                             ImageUrl = "/imgs/ring1.jpg",
@@ -201,7 +187,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 2,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Rings",
                             Description = "Luxury diamond ring",
                             ImageUrl = "/imgs/ring2.jpg",
@@ -211,7 +197,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 3,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Rings",
                             Description = "Beautiful silver ring",
                             ImageUrl = "/imgs/ring3.jpg",
@@ -221,7 +207,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 4,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Rings",
                             Description = "Premium royal ring",
                             ImageUrl = "/imgs/ring4.jpg",
@@ -231,7 +217,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 5,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Necklaces",
                             Description = "Premium diamond necklace",
                             ImageUrl = "/imgs/necklace1.jpg",
@@ -241,7 +227,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 6,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Necklaces",
                             Description = "Elegant gold necklace",
                             ImageUrl = "/imgs/necklace2.jpg",
@@ -251,7 +237,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 7,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Necklaces",
                             Description = "Classic pearl necklace",
                             ImageUrl = "/imgs/necklace3.jpg",
@@ -261,7 +247,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 8,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Necklaces",
                             Description = "Luxury necklace",
                             ImageUrl = "/imgs/necklace4.jpg",
@@ -271,7 +257,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 9,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Earrings",
                             Description = "Elegant diamond earrings",
                             ImageUrl = "/imgs/earring1.jpg",
@@ -281,7 +267,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 10,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Earrings",
                             Description = "Beautiful gold earrings",
                             ImageUrl = "/imgs/earring2.jpg",
@@ -291,7 +277,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 11,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Earrings",
                             Description = "Classic pearl earrings",
                             ImageUrl = "/imgs/earring3.jpg",
@@ -301,7 +287,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 12,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Earrings",
                             Description = "Premium luxury earrings",
                             ImageUrl = "/imgs/earring4.jpg",
@@ -311,7 +297,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 13,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Watches",
                             Description = "Elegant classic watch",
                             ImageUrl = "/imgs/watch1.jpg",
@@ -321,7 +307,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 14,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Watches",
                             Description = "Luxury gold watch",
                             ImageUrl = "/imgs/watch2.jpg",
@@ -331,7 +317,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 15,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Watches",
                             Description = "Modern silver watch",
                             ImageUrl = "/imgs/watch3.jpg",
@@ -341,7 +327,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 16,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Watches",
                             Description = "Premium luxury watch",
                             ImageUrl = "/imgs/watch4.jpg",
@@ -351,7 +337,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 17,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Bracelets",
                             Description = "Elegant golden bracelet",
                             ImageUrl = "/imgs/bracelet1.jpg",
@@ -361,7 +347,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 18,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Bracelets",
                             Description = "Luxury diamond bracelet",
                             ImageUrl = "/imgs/bracelet2.jpg",
@@ -371,7 +357,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 19,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Bracelets",
                             Description = "Beautiful silver bracelet",
                             ImageUrl = "/imgs/bracelet3.jpg",
@@ -381,7 +367,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 20,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Bracelets",
                             Description = "Classic pearl bracelet",
                             ImageUrl = "/imgs/bracelet4.jpg",
@@ -391,7 +377,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 21,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Bracelets",
                             Description = "Premium royal bracelet",
                             ImageUrl = "/imgs/bracelet5.jpg",
@@ -401,7 +387,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 22,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Bracelets",
                             Description = "Luxury gold design",
                             ImageUrl = "/imgs/bracelet6.jpg",
@@ -411,7 +397,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 23,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Bracelets",
                             Description = "Elegant crystal bracelet",
                             ImageUrl = "/imgs/bracelet7.jpg",
@@ -421,7 +407,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 24,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Bracelets",
                             Description = "Classic everyday bracelet",
                             ImageUrl = "/imgs/bracelet8.jpg",
@@ -431,7 +417,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 25,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Bracelets",
                             Description = "Exclusive diamond bracelet",
                             ImageUrl = "/imgs/bracelet9.jpg",
@@ -441,7 +427,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 26,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Bracelets",
                             Description = "Modern elegant bracelet",
                             ImageUrl = "/imgs/bracelet10.jpg",
@@ -451,7 +437,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 27,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Necklaces",
                             Description = "Beautiful heart necklace",
                             ImageUrl = "/imgs/necklace5.jpg",
@@ -461,17 +447,17 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 28,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Necklaces",
                             Description = "Royal diamond collection",
                             ImageUrl = "/imgs/necklace6.jpg",
-                            Name = "Royal Diamond Necklace",
+                            Name = "Royal Necklace",
                             Price = 1500m
                         },
                         new
                         {
                             Id = 29,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Necklaces",
                             Description = "Elegant pearl style",
                             ImageUrl = "/imgs/necklace7.jpg",
@@ -481,7 +467,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 30,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Necklaces",
                             Description = "Vintage luxury necklace",
                             ImageUrl = "/imgs/necklace8.jpg",
@@ -491,17 +477,17 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 31,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Necklaces",
                             Description = "Classic diamond design",
                             ImageUrl = "/imgs/necklace9.jpg",
-                            Name = "Classic Diamond Necklace",
+                            Name = " Diamond Necklace",
                             Price = 1100m
                         },
                         new
                         {
                             Id = 32,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Necklaces",
                             Description = "Rose gold elegance",
                             ImageUrl = "/imgs/necklace10.jpg",
@@ -511,7 +497,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 33,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Watches",
                             Description = "Luxury black watch",
                             ImageUrl = "/imgs/watch5.jpg",
@@ -521,7 +507,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 34,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Watches",
                             Description = "Diamond premium watch",
                             ImageUrl = "/imgs/watch6.jpg",
@@ -531,7 +517,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 35,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Watches",
                             Description = "Leather classic watch",
                             ImageUrl = "/imgs/watch7.jpg",
@@ -541,7 +527,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 36,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Watches",
                             Description = "Royal gold watch",
                             ImageUrl = "/imgs/watch8.jpg",
@@ -551,7 +537,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 37,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Rings",
                             Description = "Elegant crystal ring",
                             ImageUrl = "/imgs/ring5.jpg",
@@ -561,7 +547,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 38,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Rings",
                             Description = "Beautiful rose gold ring",
                             ImageUrl = "/imgs/ring6.jpg",
@@ -571,7 +557,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 39,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Rings",
                             Description = "Premium diamond ring",
                             ImageUrl = "/imgs/ring7.jpg",
@@ -581,7 +567,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 40,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Rings",
                             Description = "Classic silver ring",
                             ImageUrl = "/imgs/ring8.jpg",
@@ -591,7 +577,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 41,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Rings",
                             Description = "Royal luxury ring",
                             ImageUrl = "/imgs/ring9.jpg",
@@ -601,7 +587,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 42,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Rings",
                             Description = "Vintage elegant ring",
                             ImageUrl = "/imgs/ring10.jpg",
@@ -611,7 +597,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 43,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Earrings",
                             Description = "Elegant crystal earrings",
                             ImageUrl = "/imgs/earring5.jpg",
@@ -621,7 +607,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 44,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Earrings",
                             Description = "Beautiful rose gold earrings",
                             ImageUrl = "/imgs/earring6.jpg",
@@ -631,17 +617,17 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 45,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Earrings",
                             Description = "Premium diamond earrings",
                             ImageUrl = "/imgs/earring7.jpg",
-                            Name = "Luxury Diamond Earrings",
+                            Name = "Luxe Diamond Earrings",
                             Price = 850m
                         },
                         new
                         {
                             Id = 46,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Earrings",
                             Description = "Classic pearl earrings",
                             ImageUrl = "/imgs/earring8.jpg",
@@ -651,7 +637,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 47,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Earrings",
                             Description = "Royal luxury earrings",
                             ImageUrl = "/imgs/earring9.jpg",
@@ -661,7 +647,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 48,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Earrings",
                             Description = "Vintage elegant earrings",
                             ImageUrl = "/imgs/earring10.jpg",
@@ -671,7 +657,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 49,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Watches",
                             Description = "Elegant luxury silver watch",
                             ImageUrl = "/imgs/watch9.jpg",
@@ -681,7 +667,7 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 50,
-                            Brand = "Glamora",
+                            Brand = "LUXE",
                             Category = "Watches",
                             Description = "Exclusive diamond royal watch",
                             ImageUrl = "/imgs/watch10.jpg",
@@ -694,24 +680,22 @@ namespace Webproject.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal>("WalletBalance")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -721,33 +705,33 @@ namespace Webproject.Migrations
                         new
                         {
                             Id = 1,
-                            Email = "Sara.Jamal11@gmail.com",
-                            FullName = "SaraJamal",
+                            Email = "hiba@gmail.com",
+                            FullName = "hibamoh",
                             Password = "11234511",
                             WalletBalance = 0m
                         },
                         new
                         {
                             Id = 2,
-                            Email = "Lama.Hadi22@gmail.com",
-                            FullName = "lamaHadi",
-                            Password = "22134522",
+                            Email = "mostafa123@gmail.com",
+                            FullName = "mostafamoh",
+                            Password = "27134532",
                             WalletBalance = 0m
                         },
                         new
                         {
                             Id = 3,
-                            Email = "Leen.Ahmad33@gmail.com",
-                            FullName = "LeenAhmad",
-                            Password = "33134533",
+                            Email = "Ahmadkhallel@gmail.com",
+                            FullName = "Ahmadkhallel",
+                            Password = "37134533",
                             WalletBalance = 0m
                         },
                         new
                         {
                             Id = 4,
-                            Email = "Sama.Kareem44@gmail.com",
-                            FullName = "samakareem",
-                            Password = "44134544",
+                            Email = "rana.123l@gmail.com",
+                            FullName = "ranaahmad",
+                            Password = "54134564",
                             WalletBalance = 0m
                         });
                 });
@@ -756,26 +740,24 @@ namespace Webproject.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

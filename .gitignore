@@ -4,3 +4,9 @@ obj/
 *.user
 *.suo
 appsettings.Development.json
+
+# Local SQLite database
+LUXEStore.db
+
+# Local .NET installer
+dotnet-install.sh
