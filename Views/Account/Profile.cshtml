@@ -1,4 +1,4 @@
-﻿@model Webproject.Models.User
+@model Webproject.Models.User
 
 @{
     ViewData["Title"] = "My Account";
@@ -6,298 +6,866 @@
 
 <style>
 
+    /* =========================================================
+       LUXE ACCOUNT — PREMIUM RESPONSIVE DESIGN
+       ========================================================= */
+
     .luxe-account {
         min-height: 100vh;
-        padding: 70px 35px;
-        background: radial-gradient(circle at top left, rgba(198,161,91,.12), transparent 35%), radial-gradient(circle at bottom right, rgba(15,46,38,.18), transparent 40%), #F7F1E8;
+        box-sizing: border-box;
+        padding: 70px 35px 80px;
+
+        background:
+            radial-gradient(circle at top left,
+                rgba(198,161,91,.12),
+                transparent 35%),
+            radial-gradient(circle at bottom right,
+                rgba(15,46,38,.18),
+                transparent 40%),
+            #F7F1E8;
+
         color: #111;
     }
 
+
     .account-wrapper {
+        width: 100%;
         max-width: 1100px;
-        margin: auto;
+        margin: 0 auto;
     }
 
-    
+
+    /* =========================================================
+       PROFILE CARD
+       ========================================================= */
 
     .profile-card {
         position: relative;
+
+        width: 100%;
         max-width: 900px;
+
         margin: 0 auto 45px;
         padding: 38px;
+
+        box-sizing: border-box;
+
         display: flex;
         align-items: center;
         gap: 30px;
+
         border-radius: 30px;
+
         background: rgba(255,255,255,.72);
+
         backdrop-filter: blur(18px);
         -webkit-backdrop-filter: blur(18px);
+
         border: 1px solid rgba(198,161,91,.3);
-        box-shadow: 0 20px 55px rgba(15,46,38,.10);
+
+        box-shadow:
+            0 20px 55px rgba(15,46,38,.10);
+
         overflow: hidden;
-        transition: .4s ease;
+
+        transition:
+            transform .4s ease,
+            box-shadow .4s ease;
     }
 
-        .profile-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 4px;
-            background: #C6A15B;
-            box-shadow: 0 0 18px rgba(198,161,91,.7);
-        }
 
-        .profile-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 28px 65px rgba(15,46,38,.14);
-        }
+    .profile-card::before {
+        content: "";
 
+        position: absolute;
+
+        top: 0;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        width: 120px;
+        height: 4px;
+
+        background: #C6A15B;
+
+        box-shadow:
+            0 0 18px rgba(198,161,91,.7);
+    }
+
+
+    .profile-card:hover {
+        transform: translateY(-5px);
+
+        box-shadow:
+            0 28px 65px rgba(15,46,38,.14);
+    }
+
+
+    /* =========================================================
+       AVATAR
+       ========================================================= */
 
     .profile-avatar {
         width: 115px;
         height: 115px;
-        flex-shrink: 0;
+
+        flex: 0 0 115px;
+
         border-radius: 50%;
+
         display: flex;
-        justify-content: center;
         align-items: center;
-        background: linear-gradient(145deg,#0F2E26,#1A4639);
+        justify-content: center;
+
+        background:
+            linear-gradient(
+                145deg,
+                #0F2E26,
+                #1A4639
+            );
+
         color: #C6A15B;
+
         border: 2px solid #C6A15B;
+
         font-size: 43px;
-        box-shadow: 0 15px 35px rgba(15,46,38,.20);
-        transition: .4s ease;
+
+        box-shadow:
+            0 15px 35px rgba(15,46,38,.20);
+
+        transition:
+            transform .4s ease,
+            box-shadow .4s ease;
     }
+
 
     .profile-card:hover .profile-avatar {
         transform: scale(1.06);
-        box-shadow: 0 18px 40px rgba(198,161,91,.25);
+
+        box-shadow:
+            0 18px 40px rgba(198,161,91,.25);
     }
 
-  
+
+    /* =========================================================
+       PROFILE INFORMATION
+       ========================================================= */
+
+    .profile-info {
+        min-width: 0;
+    }
+
 
     .profile-info h2 {
         margin: 0;
+
         color: #0F2E26;
+
         font-size: 30px;
         font-weight: 800;
+
         letter-spacing: 2px;
+
+        line-height: 1.2;
+
+        overflow-wrap: anywhere;
     }
+
 
     .profile-info p {
         margin: 8px 0 18px;
+
         color: #888;
+
         font-size: 14px;
         letter-spacing: .7px;
+
+        overflow-wrap: anywhere;
     }
+
 
     .member-badge {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
+
         gap: 8px;
+
         padding: 9px 17px;
+
         border-radius: 30px;
+
         background: #0F2E26;
+
         color: #C6A15B;
+
         border: 1px solid rgba(198,161,91,.45);
+
         font-size: 11px;
         font-weight: 700;
+
         letter-spacing: 2px;
     }
 
-        .member-badge::before {
-            content: "✦";
-            color: #C6A15B;
-        }
 
+    .member-badge::before {
+        content: "✦";
+        color: #C6A15B;
+    }
+
+
+    /* =========================================================
+       SECTION TITLE
+       ========================================================= */
 
     .account-section-title {
         text-align: center;
+
         margin-bottom: 28px;
     }
 
-        .account-section-title small {
-            color: #C6A15B;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
 
-        .account-section-title h1 {
-            margin: 8px 0 0;
-            color: #0F2E26;
-            font-size: 28px;
-            letter-spacing: 3px;
-        }
+    .account-section-title small {
+        display: block;
 
-            .account-section-title h1::after {
-                content: "";
-                display: block;
-                width: 60px;
-                height: 3px;
-                margin: 13px auto 0;
-                background: #C6A15B;
-                border-radius: 10px;
-            }
+        color: #C6A15B;
 
+        font-size: 10px;
+        font-weight: 700;
+
+        letter-spacing: 4px;
+
+        text-transform: uppercase;
+    }
+
+
+    .account-section-title h1 {
+        margin: 8px 0 0;
+
+        color: #0F2E26;
+
+        font-size: 28px;
+
+        letter-spacing: 3px;
+
+        line-height: 1.2;
+    }
+
+
+    .account-section-title h1::after {
+        content: "";
+
+        display: block;
+
+        width: 60px;
+        height: 3px;
+
+        margin: 13px auto 0;
+
+        background: #C6A15B;
+
+        border-radius: 10px;
+    }
+
+
+    /* =========================================================
+       ACCOUNT GRID
+       ========================================================= */
 
     .account-grid {
         display: grid;
-        grid-template-columns: repeat(3,1fr);
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
         gap: 25px;
+
+        width: 100%;
     }
 
+
+    /* =========================================================
+       ACCOUNT CARDS
+       ========================================================= */
 
     .account-box {
         position: relative;
+
+        width: 100%;
+        min-width: 0;
         height: 230px;
+
+        box-sizing: border-box;
+
         display: flex;
         flex-direction: column;
+
         justify-content: center;
         align-items: center;
+
         text-align: center;
+
         padding: 25px;
+
         border-radius: 27px;
+
         background: rgba(255,255,255,.72);
+
         backdrop-filter: blur(18px);
         -webkit-backdrop-filter: blur(18px);
+
         border: 1px solid rgba(198,161,91,.28);
-        box-shadow: 0 15px 40px rgba(15,46,38,.08);
+
+        box-shadow:
+            0 15px 40px rgba(15,46,38,.08);
+
         text-decoration: none;
+
         overflow: hidden;
-        transition: transform .4s ease, box-shadow .4s ease, border-color .4s ease;
+
+        transition:
+            transform .4s ease,
+            box-shadow .4s ease,
+            border-color .4s ease;
     }
 
-        .account-box::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -120%;
-            width: 80%;
-            height: 100%;
-            background: linear-gradient( 120deg, transparent, rgba(255,255,255,.7), transparent );
-            transform: skewX(-25deg);
-            transition: .7s ease;
-        }
 
-        .account-box:hover::before {
-            left: 140%;
-        }
+    .account-box::before {
+        content: "";
 
-        .account-box:hover {
-            transform: translateY(-9px);
-            border-color: #C6A15B;
-            box-shadow: 0 25px 55px rgba(15,46,38,.14), 0 0 25px rgba(198,161,91,.08);
-        }
+        position: absolute;
 
-    
+        top: 0;
+        left: -120%;
+
+        width: 80%;
+        height: 100%;
+
+        background:
+            linear-gradient(
+                120deg,
+                transparent,
+                rgba(255,255,255,.7),
+                transparent
+            );
+
+        transform: skewX(-25deg);
+
+        transition: .7s ease;
+    }
+
+
+    .account-box:hover::before {
+        left: 140%;
+    }
+
+
+    .account-box:hover {
+        transform: translateY(-9px);
+
+        border-color: #C6A15B;
+
+        box-shadow:
+            0 25px 55px rgba(15,46,38,.14),
+            0 0 25px rgba(198,161,91,.08);
+    }
+
+
+    /* =========================================================
+       GOLD LINE
+       ========================================================= */
 
     .gold-line {
         position: absolute;
+
         top: 0;
         left: 50%;
+
         transform: translateX(-50%);
+
         width: 65px;
         height: 4px;
+
         background: #C6A15B;
-        box-shadow: 0 0 15px rgba(198,161,91,.7);
+
+        box-shadow:
+            0 0 15px rgba(198,161,91,.7);
     }
 
+
+    /* =========================================================
+       ICON
+       ========================================================= */
 
     .account-box i {
         width: 72px;
         height: 72px;
+
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+
         margin-bottom: 20px;
+
         border-radius: 21px;
+
         background: #0F2E26;
+
         color: #C6A15B;
+
         font-size: 30px;
-        box-shadow: 0 12px 28px rgba(15,46,38,.18);
-        transition: .4s ease;
+
+        box-shadow:
+            0 12px 28px rgba(15,46,38,.18);
+
+        transition:
+            transform .4s ease,
+            box-shadow .4s ease;
+
         z-index: 2;
     }
 
+
     .account-box:hover i {
-        transform: translateY(-5px) scale(1.08);
-        box-shadow: 0 15px 35px rgba(198,161,91,.20);
+        transform:
+            translateY(-5px)
+            scale(1.08);
+
+        box-shadow:
+            0 15px 35px rgba(198,161,91,.20);
     }
+
+
+    /* =========================================================
+       CARD TEXT
+       ========================================================= */
 
     .account-box h4 {
         margin: 0 0 9px;
+
         color: #0F2E26;
+
         font-size: 17px;
         font-weight: 800;
+
         letter-spacing: 2px;
+
         z-index: 2;
     }
 
+
     .account-box span {
         color: #888;
+
         font-size: 12px;
+
         letter-spacing: .5px;
+
+        line-height: 1.5;
+
         z-index: 2;
     }
+
 
     .account-box:hover span {
         color: #666;
     }
 
 
+    /* =========================================================
+       LARGE DESKTOP
+       ========================================================= */
 
-    @@media(max-width:900px) {
-
-        .account-grid {
-            grid-template-columns: repeat(2,1fr);
-        }
-    }
-
-    @@media(max-width:650px) {
+    @@media (min-width: 1200px) {
 
         .luxe-account {
-            padding: 45px 20px;
+            padding: 70px 50px 80px;
+        }
+
+        .account-wrapper {
+            max-width: 1100px;
         }
 
         .profile-card {
-            flex-direction: column;
-            text-align: center;
-            padding: 32px 22px;
+            max-width: 900px;
+        }
+
+        .account-grid {
+            gap: 25px;
+        }
+    }
+
+
+    /* =========================================================
+       LAPTOP
+       ========================================================= */
+
+    @@media (min-width: 992px) and (max-width: 1199px) {
+
+        .luxe-account {
+            padding: 55px 35px 70px;
+        }
+
+        .account-wrapper {
+            max-width: 1000px;
+        }
+
+        .profile-card {
+            max-width: 850px;
+            margin-bottom: 40px;
+        }
+
+        .account-grid {
+            gap: 20px;
+        }
+    }
+
+
+    /* =========================================================
+       IPAD / TABLET
+       ========================================================= */
+
+    @@media (min-width: 768px) and (max-width: 991px) {
+
+        .luxe-account {
+            padding: 45px 28px 60px;
+        }
+
+        .account-wrapper {
+            max-width: 850px;
+        }
+
+        .profile-card {
+            max-width: 100%;
+            margin-bottom: 35px;
+            padding: 30px;
+            gap: 24px;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            flex-basis: 100px;
+            font-size: 37px;
         }
 
         .profile-info h2 {
-            font-size: 25px;
+            font-size: 27px;
+        }
+
+        .account-grid {
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .account-box {
+            height: 215px;
+            padding: 22px;
+        }
+    }
+
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @@media (max-width: 767px) {
+
+        .luxe-account {
+            min-height: auto;
+            padding: 32px 15px 50px;
+        }
+
+        .account-wrapper {
+            max-width: 500px;
+        }
+
+        .profile-card {
+            width: 100%;
+            margin: 0 auto 30px;
+            padding: 30px 20px;
+
+            flex-direction: column;
+
+            text-align: center;
+            gap: 18px;
+
+            border-radius: 24px;
+        }
+
+        .profile-avatar {
+            width: 95px;
+            height: 95px;
+            flex-basis: 95px;
+            font-size: 35px;
+        }
+
+        .profile-info {
+            width: 100%;
+        }
+
+        .profile-info h2 {
+            font-size: 24px;
+            letter-spacing: 1.3px;
+            line-height: 1.3;
+        }
+
+        .profile-info p {
+            margin: 8px auto 16px;
+            font-size: 13px;
+            line-height: 1.5;
+            max-width: 100%;
+        }
+
+        .member-badge {
+            padding: 8px 14px;
+            font-size: 10px;
+            letter-spacing: 1.6px;
+        }
+
+        .account-section-title {
+            margin-bottom: 20px;
+        }
+
+        .account-section-title small {
+            font-size: 9px;
+            letter-spacing: 3px;
+        }
+
+        .account-section-title h1 {
+            margin-top: 7px;
+            font-size: 23px;
+            letter-spacing: 2.2px;
+        }
+
+        .account-section-title h1::after {
+            width: 48px;
+            height: 2px;
+            margin-top: 11px;
         }
 
         .account-grid {
             grid-template-columns: 1fr;
+            gap: 15px;
         }
 
         .account-box {
-            height: 210px;
+            width: 100%;
+            height: 190px;
+            padding: 22px 18px;
+            border-radius: 23px;
+        }
+
+        .account-box i {
+            width: 62px;
+            height: 62px;
+            margin-bottom: 15px;
+            border-radius: 18px;
+            font-size: 26px;
+        }
+
+        .account-box h4 {
+            margin-bottom: 7px;
+            font-size: 15px;
+            letter-spacing: 1.6px;
+        }
+
+        .account-box span {
+            font-size: 11px;
+            line-height: 1.5;
+            max-width: 220px;
+        }
+
+        .gold-line {
+            width: 52px;
+            height: 3px;
+        }
+
+        .profile-card:hover,
+        .account-box:hover {
+            transform: none;
+        }
+
+        .profile-card:hover .profile-avatar {
+            transform: none;
+        }
+
+        .account-box:hover i {
+            transform: none;
+        }
+    }
+
+
+    /* =========================================================
+       SMALL MOBILE
+       ========================================================= */
+
+    @@media (max-width: 480px) {
+
+        .luxe-account {
+            padding: 24px 12px 40px;
+        }
+
+        .profile-card {
+            padding: 27px 16px;
+            margin-bottom: 25px;
+            border-radius: 22px;
+        }
+
+        .profile-avatar {
+            width: 85px;
+            height: 85px;
+            flex-basis: 85px;
+            font-size: 31px;
+        }
+
+        .profile-info h2 {
+            font-size: 21px;
+            letter-spacing: 1px;
+        }
+
+        .profile-info p {
+            font-size: 12px;
+        }
+
+        .member-badge {
+            padding: 7px 12px;
+            font-size: 9px;
+            letter-spacing: 1.3px;
+        }
+
+        .account-section-title {
+            margin-bottom: 17px;
+        }
+
+        .account-section-title small {
+            font-size: 8px;
+            letter-spacing: 2.5px;
+        }
+
+        .account-section-title h1 {
+            font-size: 21px;
+            letter-spacing: 1.8px;
+        }
+
+        .account-box {
+            height: 178px;
+            padding: 20px 15px;
+        }
+
+        .account-box i {
+            width: 57px;
+            height: 57px;
+            border-radius: 17px;
+            font-size: 24px;
+            margin-bottom: 13px;
+        }
+
+        .account-box h4 {
+            font-size: 14px;
+            letter-spacing: 1.4px;
+        }
+
+        .account-box span {
+            font-size: 10.5px;
+            max-width: 200px;
+        }
+
+        .gold-line {
+            width: 45px;
+        }
+    }
+
+
+    /* =========================================================
+       VERY SMALL MOBILE
+       ========================================================= */
+
+    @@media (max-width: 360px) {
+
+        .luxe-account {
+            padding: 18px 9px 32px;
+        }
+
+        .profile-card {
+            padding: 23px 13px;
+            margin-bottom: 22px;
+        }
+
+        .profile-avatar {
+            width: 78px;
+            height: 78px;
+            flex-basis: 78px;
+            font-size: 28px;
+        }
+
+        .profile-info h2 {
+            font-size: 19px;
+        }
+
+        .profile-info p {
+            font-size: 11px;
+        }
+
+        .member-badge {
+            font-size: 8px;
+            padding: 6px 10px;
+        }
+
+        .account-section-title h1 {
+            font-size: 19px;
+        }
+
+        .account-box {
+            height: 168px;
+            border-radius: 20px;
+        }
+
+        .account-box i {
+            width: 53px;
+            height: 53px;
+            font-size: 22px;
+            margin-bottom: 11px;
+        }
+
+        .account-box h4 {
+            font-size: 13px;
+        }
+
+        .account-box span {
+            font-size: 10px;
+        }
+    }
+
+
+    /* =========================================================
+       REDUCED MOTION
+       ========================================================= */
+
+    @@media (prefers-reduced-motion: reduce) {
+
+        .profile-card,
+        .profile-avatar,
+        .account-box,
+        .account-box i,
+        .account-box::before {
+            transition: none !important;
         }
     }
 
 </style>
 
+
 <div class="luxe-account">
 
-   
     <div class="account-wrapper">
-
-      
 
         <div class="profile-card">
 
             <div class="profile-avatar">
-
                 <i class="fa-solid fa-user"></i>
-
             </div>
 
             <div class="profile-info">
@@ -319,8 +887,6 @@
         </div>
 
 
-
-
         <div class="account-section-title">
 
             <small>
@@ -334,10 +900,7 @@
         </div>
 
 
-
         <div class="account-grid">
-
-
 
             <a asp-controller="Favorites"
                asp-action="Index"
@@ -358,9 +921,6 @@
             </a>
 
 
-           
-
-
             <a asp-controller="Wallet"
                asp-action="Index"
                class="account-box">
@@ -369,14 +929,16 @@
 
                 <i class="fa-solid fa-wallet"></i>
 
-                <h4>Wallet</h4>
+                <h4>
+                    WALLET
+                </h4>
 
-                <span>Balance & Transactions</span>
+                <span>
+                    Balance & Transactions
+                </span>
 
             </a>
 
-
-           
 
             <a asp-controller="Account"
                asp-action="ChangePassword"
@@ -399,176 +961,6 @@
         </div>
 
     </div>
-   
 
 </div>
-<style>
-    /* =========================================
-       LUXE ACCOUNT — PAGE SIZE & SPACING
-       ========================================= */
 
-    /* Desktop */
-    @@media (min-width: 1200px) {
-
-        .luxe-account {
-            min-height: 100vh;
-            padding: 70px 50px 80px;
-        }
-
-        .account-wrapper {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .profile-card {
-            max-width: 900px;
-            margin: 0 auto 45px;
-        }
-
-        .account-grid {
-            gap: 25px;
-        }
-
-    }
-
-
-    /* Laptop */
-    @@media (min-width: 992px) and (max-width: 1199px) {
-
-        .luxe-account {
-            min-height: 100vh;
-            padding: 55px 35px 70px;
-        }
-
-        .account-wrapper {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .profile-card {
-            max-width: 850px;
-            margin-bottom: 40px;
-        }
-
-        .account-grid {
-            gap: 20px;
-        }
-
-    }
-
-
-    /* iPad / Tablet */
-    @@media (min-width: 768px) and (max-width: 991px) {
-
-        .luxe-account {
-            min-height: 100vh;
-            padding: 45px 28px 60px;
-        }
-
-        .account-wrapper {
-            width: 100%;
-            max-width: 850px;
-            margin: 0 auto;
-        }
-
-        .profile-card {
-            width: 100%;
-            margin-bottom: 35px;
-            padding: 30px;
-        }
-
-        .account-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .account-box {
-            height: 215px;
-        }
-
-    }
-
-
-    /* Mobile */
-    @@media (max-width: 767px) {
-
-        .luxe-account {
-            min-height: 100vh;
-            padding: 30px 15px 45px;
-        }
-
-        .account-wrapper {
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .profile-card {
-            width: 100%;
-            margin: 0 auto 30px;
-            padding: 28px 20px;
-        }
-
-        .account-section-title {
-            margin-bottom: 22px;
-        }
-
-        .account-grid {
-            width: 100%;
-            grid-template-columns: 1fr;
-            gap: 16px;
-        }
-
-        .account-box {
-            width: 100%;
-            height: 195px;
-        }
-
-    }
-
-
-    /* Small Mobile */
-    @@media (max-width: 480px) {
-
-        .luxe-account {
-            padding: 22px 12px 35px;
-        }
-
-        .profile-card {
-            margin-bottom: 25px;
-            padding: 24px 16px;
-        }
-
-        .account-section-title {
-            margin-bottom: 18px;
-        }
-
-        .account-grid {
-            gap: 14px;
-        }
-
-        .account-box {
-            height: 180px;
-        }
-
-    }
-
-
-    /* Very Small Mobile */
-    @@media (max-width: 360px) {
-
-        .luxe-account {
-            padding: 18px 9px 30px;
-        }
-
-        .profile-card {
-            padding: 21px 13px;
-            margin-bottom: 22px;
-        }
-
-        .account-box {
-            height: 170px;
-        }
-
-    }
-</style>
