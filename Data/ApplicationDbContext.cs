@@ -272,7 +272,7 @@ new Product
     Brand = "LUXE",
     Category = "Bracelets",
     Price = 400,
-    ImageUrl = "/imgs/bracelet1.jpg",
+    ImageUrl = "/imgs/Bracelet1.jpg",
     Description = "Elegant golden bracelet"
 },
 
@@ -283,7 +283,7 @@ new Product
     Brand = "LUXE",
     Category = "Bracelets",
     Price = 750,
-    ImageUrl = "/imgs/bracelet2.jpg",
+    ImageUrl = "/imgs/Bracelet2.jpg",
     Description = "Luxury diamond bracelet"
 },
 
@@ -294,7 +294,7 @@ new Product
     Brand = "LUXE",
     Category = "Bracelets",
     Price = 250,
-    ImageUrl = "/imgs/bracelet3.jpg",
+    ImageUrl = "/imgs/Bracelet3.jpg",
     Description = "Beautiful silver bracelet"
 },
 
@@ -305,7 +305,7 @@ new Product
     Brand = "LUXE",
     Category = "Bracelets",
     Price = 350,
-    ImageUrl = "/imgs/bracelet4.jpg",
+    ImageUrl = "/imgs/Bracelet4.jpg",
     Description = "Classic pearl bracelet"
 },
 
@@ -316,7 +316,7 @@ new Product
     Brand = "LUXE",
     Category = "Bracelets",
     Price = 900,
-    ImageUrl = "/imgs/bracelet5.jpg",
+    ImageUrl = "/imgs/Bracelet5.jpg",
     Description = "Premium royal bracelet"
 },
 
@@ -327,7 +327,7 @@ new Product
     Brand = "LUXE",
     Category = "Bracelets",
     Price = 650,
-    ImageUrl = "/imgs/bracelet6.jpg",
+    ImageUrl = "/imgs/Bracelet6.jpg",
     Description = "Luxury gold design"
 },
 
@@ -338,7 +338,7 @@ new Product
     Brand = "LUXE",
     Category = "Bracelets",
     Price = 500,
-    ImageUrl = "/imgs/bracelet7.jpg",
+    ImageUrl = "/imgs/Bracelet7.jpg",
     Description = "Elegant crystal bracelet"
 },
 
@@ -349,7 +349,7 @@ new Product
     Brand = "LUXE",
     Category = "Bracelets",
     Price = 280,
-    ImageUrl = "/imgs/bracelet8.jpg",
+    ImageUrl = "/imgs/Bracelet8.jpg",
     Description = "Classic everyday bracelet"
 },
 
@@ -360,7 +360,7 @@ new Product
     Brand = "LUXE",
     Category = "Bracelets",
     Price = 1200,
-    ImageUrl = "/imgs/bracelet9.jpg",
+    ImageUrl = "/imgs/Bracelet9.jpg",
     Description = "Exclusive diamond bracelet"
 },
 
@@ -371,7 +371,7 @@ new Product
     Brand = "LUXE",
     Category = "Bracelets",
     Price = 320,
-    ImageUrl = "/imgs/bracelet10.jpg",
+    ImageUrl = "/imgs/Bracelet10.jpg",
     Description = "Modern elegant bracelet"
 },
 
