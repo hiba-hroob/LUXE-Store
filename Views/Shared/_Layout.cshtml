@@ -839,46 +839,36 @@
 
             @@media (max-width: 480px) {
 
+                /* Keep navbar icons safely inside the screen */
                 .side-navbar {
-                    min-height: 60px;
-                    padding: 9px 12px;
-                    gap: 8px;
+                    padding-left: 16px;
+                    padding-right: 16px;
+                    gap: 10px;
                 }
 
-
-                .side-logo {
-                    font-size: 21px;
-                    letter-spacing: 2.5px;
+                .side-extra {
+                    gap: 14px;
+                    margin-right: 4px;
+                    flex-shrink: 0;
                 }
-
-
-                .mobile-menu-toggle {
-                    width: 40px;
-                    height: 40px;
-                    font-size: 17px;
-                }
-
 
                 .notification-bell,
                 .message-icon-link {
-                    font-size: 18px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 28px;
+                    height: 32px;
+                    flex-shrink: 0;
                 }
 
-
-                .side-navbar > .navbar-nav {
-                    left: 10px;
-                    right: 10px;
-                    padding: 10px;
-                    border-radius: 14px;
+                .notification-number,
+                .message-number {
+                    right: -4px;
+                    top: -5px;
                 }
 
-
-                .side-navbar .luxe-link {
-                    min-height: 43px;
-                    padding: 10px 14px !important;
-                    font-size: 10px;
-                    letter-spacing: 1.3px;
-                }
+                
             }
 
 
